@@ -1,6 +1,16 @@
 version: "3.9"
 
 services:
+    mongodb:
+        image: mongo
+        restart: always
+        volumes:
+            - ./data-db:/data/db
+        ports:
+            - 27018:27018
+        networks:
+            - app-net
+        command: mongod --port 27018
     web:
         build: .
         command: python manage.py runserver 0.0.0.0:8000
@@ -8,3 +18,10 @@ services:
             - .:/code
         ports:
             - "8000:8000"
+        depends_on:
+            - mongodb
+        networks:
+            - app-net
+networks:
+    app-net:
+        driver: bridge
