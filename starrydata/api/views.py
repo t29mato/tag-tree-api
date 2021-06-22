@@ -1,4 +1,3 @@
-from django.db.models import query
 from rest_framework import generics
 from starrydata.models import FabricationProcess
 from starrydata.api.serializers import FabricationProcessSerializer
