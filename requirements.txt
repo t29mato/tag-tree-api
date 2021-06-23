@@ -5,3 +5,4 @@ markdown
 django-filter
 djongo
 djangorestframework-jsonapi
+django-cors-headers
