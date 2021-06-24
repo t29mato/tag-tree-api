@@ -16,10 +16,11 @@ services:
         command: python manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/code
+            - ~/.gitconfig:/root/.gitconfig
         ports:
             - "8000:8000"
-        depends_on:
-            - mongodb
+        # depends_on:
+        #     - mongodb
         networks:
             - app-net
 networks:
