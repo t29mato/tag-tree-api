@@ -86,13 +86,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'test',
-        'ENFORCE_SCHEME': False,
-        'CLIENT': {
-            'host': 'mongodb://mongodb',
-            'port': 27018
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
     }
 }
 
