@@ -4,4 +4,9 @@ djangorestframework
 markdown
 django-filter
 djangorestframework-jsonapi
+djangorestframework-jsonapi[django-filter]
+djangorestframework-jsonapi[django-polymorphic]
+djangorestframework-jsonapi[openapi]
 django-cors-headers
+pyyaml
+uritemplate
