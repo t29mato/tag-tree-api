@@ -3,6 +3,685 @@ info:
   title: ''
   version: ''
 paths:
+  /api/databases:
+    get:
+      operationId: List/api/databases
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - starrydata
+      responses:
+        '200':
+          description: List/api/databases
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Database'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    post:
+      operationId: create/api/databases
+      description: ''
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                      required:
+                        - name
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Database'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /api/papers:
+    get:
+      operationId: List/api/papers
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - starrydata
+      responses:
+        '200':
+          description: List/api/papers
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Paper'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    post:
+      operationId: create/api/papers
+      description: ''
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          maxLength: 1000
+                        authors:
+                          type: string
+                          maxLength: 1000
+                        identifier:
+                          type: string
+                          maxLength: 32
+                        DOI:
+                          type: string
+                          maxLength: 32
+                      required:
+                        - title
+                        - authors
+                        - identifier
+                        - DOI
+                    relationships:
+                      type: object
+                      properties:
+                        database:
+                          $ref: '#/components/schemas/reltomany'
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Paper'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /api/figures:
+    get:
+      operationId: List/api/figures
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - starrydata
+      responses:
+        '200':
+          description: List/api/figures
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Figure'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    post:
+      operationId: create/api/figures
+      description: ''
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          maxLength: 100
+                      required:
+                        - title
+                    relationships:
+                      type: object
+                      properties:
+                        paper:
+                          $ref: '#/components/schemas/reltomany'
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Figure'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /api/samples:
+    get:
+      operationId: List/api/samples
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - starrydata
+      responses:
+        '200':
+          description: List/api/samples
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sample'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    post:
+      operationId: create/api/samples
+      description: ''
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 100
+                      required:
+                        - name
+                    relationships:
+                      type: object
+                      properties:
+                        paper:
+                          $ref: '#/components/schemas/reltomany'
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Sample'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
   /api/fabrication_processes:
     get:
       operationId: List/api/fabrication_processes
@@ -1091,6 +1770,150 @@ paths:
                 $ref: '#/components/schemas/failure'
 components:
   schemas:
+    Database:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            name:
+              type: string
+              maxLength: 100
+            paper_count:
+              type: string
+              readOnly: true
+            figure_count:
+              type: string
+              readOnly: true
+            sample_count:
+              type: string
+              readOnly: true
+          required:
+            - name
+    Paper:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            title:
+              type: string
+              maxLength: 1000
+            authors:
+              type: string
+              maxLength: 1000
+            identifier:
+              type: string
+              maxLength: 32
+            DOI:
+              type: string
+              maxLength: 32
+          required:
+            - title
+            - authors
+            - identifier
+            - DOI
+        relationships:
+          type: object
+          properties:
+            database:
+              $ref: '#/components/schemas/reltomany'
+    Figure:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            title:
+              type: string
+              maxLength: 100
+          required:
+            - title
+        relationships:
+          type: object
+          properties:
+            paper:
+              $ref: '#/components/schemas/reltomany'
+    Sample:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            name:
+              type: string
+              maxLength: 100
+          required:
+            - name
+        relationships:
+          type: object
+          properties:
+            paper:
+              $ref: '#/components/schemas/reltomany'
     FabricationProcess:
       type: object
       required:

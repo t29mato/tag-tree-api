@@ -1,6 +1,22 @@
 from rest_framework import generics
-from starrydata.models import FabricationProcess, SynthesisMethodTag, SynthesisMethodTagTreeNode
-from starrydata.api.serializers import FabricationProcessSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer
+from starrydata.models import Database, FabricationProcess, Figure, Paper, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
+from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, FabricationProcessSerializer, SampleSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer
+
+class DatabaseListView(generics.ListCreateAPIView):
+    queryset = Database.objects.all().order_by('id')
+    serializer_class = DatabaseSerializer
+
+class PaperListView(generics.ListCreateAPIView):
+    queryset = Paper.objects.all().order_by('id')
+    serializer_class = PaperSerializer
+
+class FigureListView(generics.ListCreateAPIView):
+    queryset = Figure.objects.all().order_by('id')
+    serializer_class = FigureSerializer
+
+class SampleListView(generics.ListCreateAPIView):
+    queryset = Sample.objects.all().order_by('id')
+    serializer_class = SampleSerializer
 
 
 class ListView(generics.ListCreateAPIView):

@@ -13,4 +13,3 @@ api-docs-fix:
 	yq -i eval 'del(.components.schemas.relationshipLinks.properties.self.description)'  ./starrydata/api/docs/openapi.yaml
 	# CONFIRM: nullのものをnumberにしておいて良いか
 	yq -i eval '.components.schemas.nulltype.type = "number"'  ./starrydata/api/docs/openapi.yaml
-
