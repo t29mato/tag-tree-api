@@ -11,6 +11,8 @@ class Paper(models.Model):
     authors = models.CharField(max_length=1000)
     identifier = models.CharField(max_length=32)
     DOI = models.CharField(max_length=32)
+    container_title = models.CharField(max_length=1000, blank=True, null=True)
+    publisher = models.CharField(max_length=1000, default='')
     database = models.ManyToManyField(Database)
 
     def __str__(self) -> str:

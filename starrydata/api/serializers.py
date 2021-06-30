@@ -10,13 +10,7 @@ class DatabaseSerializer(serializers.ModelSerializer, SerializerExtensionsMixin)
     sample_count = SerializerMethodField()
     class Meta:
         model = Database
-        fields = [
-            'id',
-            'name',
-            'paper_count',
-            'figure_count',
-            'sample_count',
-        ]
+        fields = '__all__'
 
     def get_paper_count(self, obj):
         return len(Paper.objects.all().filter(database = obj.id))
@@ -28,9 +22,19 @@ class DatabaseSerializer(serializers.ModelSerializer, SerializerExtensionsMixin)
         return len(Sample.objects.all().filter(paper__database = obj.id))
 
 class PaperSerializer(serializers.ModelSerializer):
+    figure_count = SerializerMethodField()
+    sample_count = SerializerMethodField()
+
     class Meta:
         model = Paper
         fields = '__all__'
+
+    def get_figure_count(self, obj):
+        return len(Figure.objects.all().filter(paper__database = obj.id))
+
+    def get_sample_count(self, obj):
+        return len(Sample.objects.all().filter(paper__database = obj.id))
+
 class FigureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Figure

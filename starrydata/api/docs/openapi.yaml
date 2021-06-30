@@ -280,16 +280,15 @@ paths:
                         DOI:
                           type: string
                           maxLength: 32
+                        container_title:
+                          type: string
+                          nullable: true
+                          maxLength: 1000
                       required:
                         - title
                         - authors
                         - identifier
                         - DOI
-                    relationships:
-                      type: object
-                      properties:
-                        database:
-                          $ref: '#/components/schemas/reltomany'
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -1840,16 +1839,21 @@ components:
             DOI:
               type: string
               maxLength: 32
+            container_title:
+              type: string
+              nullable: true
+              maxLength: 1000
+            figure_count:
+              type: string
+              readOnly: true
+            sample_count:
+              type: string
+              readOnly: true
           required:
             - title
             - authors
             - identifier
             - DOI
-        relationships:
-          type: object
-          properties:
-            database:
-              $ref: '#/components/schemas/reltomany'
     Figure:
       type: object
       required:
