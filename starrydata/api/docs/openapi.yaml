@@ -110,6 +110,7 @@ paths:
                           maxLength: 100
                       required:
                         - name
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -284,11 +285,20 @@ paths:
                           type: string
                           nullable: true
                           maxLength: 1000
+                        publisher:
+                          type: string
+                          maxLength: 1000
                       required:
                         - title
                         - authors
                         - identifier
                         - DOI
+                    relationships:
+                      type: object
+                      properties:
+                        database:
+                          $ref: '#/components/schemas/reltomany'
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -457,6 +467,7 @@ paths:
                       properties:
                         paper:
                           $ref: '#/components/schemas/reltomany'
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -625,6 +636,7 @@ paths:
                       properties:
                         paper:
                           $ref: '#/components/schemas/reltomany'
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -793,6 +805,7 @@ paths:
                       properties:
                         parent_id:
                           $ref: '#/components/schemas/reltoone'
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -958,6 +971,7 @@ paths:
                       properties:
                         parent_id:
                           $ref: '#/components/schemas/reltoone'
+              type: object
       responses:
         '200':
           description: partialUpdate/api/fabrication_processes/{id}
@@ -1045,9 +1059,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/synthesis_method_tags/:
+  /api/synthesis_method_tags:
     get:
-      operationId: List/api/synthesis_method_tags/
+      operationId: List/api/synthesis_method_tags
       description: ''
       parameters:
         - $ref: '#/components/parameters/include'
@@ -1080,7 +1094,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: List/api/synthesis_method_tags/
+          description: List/api/synthesis_method_tags
           content:
             application/vnd.api+json:
               schema:
@@ -1117,7 +1131,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     post:
-      operationId: create/api/synthesis_method_tags/
+      operationId: create/api/synthesis_method_tags
       description: ''
       parameters: []
       tags:
@@ -1152,6 +1166,7 @@ paths:
                           maxLength: 100
                       required:
                         - name
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -1312,6 +1327,7 @@ paths:
                         name:
                           type: string
                           maxLength: 100
+              type: object
       responses:
         '200':
           description: partialUpdate/api/synthesis_method_tags/{id}
@@ -1399,9 +1415,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/synthesis_method_tag_tree_nodes/:
+  /api/synthesis_method_tag_tree_nodes:
     get:
-      operationId: List/api/synthesis_method_tag_tree_nodes/
+      operationId: List/api/synthesis_method_tag_tree_nodes
       description: ''
       parameters:
         - $ref: '#/components/parameters/include'
@@ -1434,7 +1450,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: List/api/synthesis_method_tag_tree_nodes/
+          description: List/api/synthesis_method_tag_tree_nodes
           content:
             application/vnd.api+json:
               schema:
@@ -1471,7 +1487,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     post:
-      operationId: create/api/synthesis_method_tag_tree_nodes/
+      operationId: create/api/synthesis_method_tag_tree_nodes
       description: ''
       parameters: []
       tags:
@@ -1513,6 +1529,7 @@ paths:
                           $ref: '#/components/schemas/reltoone'
                         parent:
                           $ref: '#/components/schemas/reltoone'
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -1680,6 +1697,7 @@ paths:
                           $ref: '#/components/schemas/reltoone'
                         parent:
                           $ref: '#/components/schemas/reltoone'
+              type: object
       responses:
         '200':
           description: partialUpdate/api/synthesis_method_tag_tree_nodes/{id}
@@ -1791,18 +1809,18 @@ components:
             id:
               type: integer
               readOnly: true
-            name:
-              type: string
-              maxLength: 100
-            paper_count:
+            sample_count:
               type: string
               readOnly: true
             figure_count:
               type: string
               readOnly: true
-            sample_count:
+            paper_count:
               type: string
               readOnly: true
+            name:
+              type: string
+              maxLength: 100
           required:
             - name
     Paper:
@@ -1827,6 +1845,12 @@ components:
             id:
               type: integer
               readOnly: true
+            figure_count:
+              type: string
+              readOnly: true
+            sample_count:
+              type: string
+              readOnly: true
             title:
               type: string
               maxLength: 1000
@@ -1843,17 +1867,19 @@ components:
               type: string
               nullable: true
               maxLength: 1000
-            figure_count:
+            publisher:
               type: string
-              readOnly: true
-            sample_count:
-              type: string
-              readOnly: true
+              maxLength: 1000
           required:
             - title
             - authors
             - identifier
             - DOI
+        relationships:
+          type: object
+          properties:
+            database:
+              $ref: '#/components/schemas/reltomany'
     Figure:
       type: object
       required:
