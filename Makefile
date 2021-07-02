@@ -36,9 +36,15 @@ api-docs-fix:
 	sed -i -e 's/- api/- starrydata/g' $(API_DOCS_FILE_PATH)
 
 api-client:
+	# Generate API client
 	docker run --rm -v "${PWD}/starrydata/api/docs/:/workspace" openapitools/openapi-generator-cli:v5.1.1 generate \
 		-i /workspace/openapi.yaml \
 		-g typescript-axios \
 		-o /workspace/dist
+
+	# Move to API client directory
 	rm -rf ../api-client/dist
 	mv starrydata/api/docs/dist ../api-client/dist
+
+	# Replace Set object, avoids typescript error
+	sed -i '' -e 's/Set;/Set<any>;/' ../api-client/dist/api.ts
