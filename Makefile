@@ -10,7 +10,7 @@ api-docs-fix:
 	cat ./starrydata/api/docs/jsonapi.yaml >> $(API_DOCS_FILE_PATH)
 
 	# Remove sort parameters, it's duplicated.
-	sed -i -e '/components\/parameters\/sort/d' $(API_DOCS_FILE_PATH)
+	sed -i '' -e '/components\/parameters\/sort/d' $(API_DOCS_FILE_PATH)
 
 	# Add type to POST schema
 	yq -i eval '.paths./api/databases.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
@@ -33,7 +33,7 @@ api-docs-fix:
 	yq -i eval '.components.schemas.nulltype.type = "number"'  ./starrydata/api/docs/openapi.yaml
 
 	# Replace tag name
-	sed -i -e 's/- api/- starrydata/g' $(API_DOCS_FILE_PATH)
+	sed -i '' -e 's/- api/- starrydata/g' $(API_DOCS_FILE_PATH)
 
 api-client:
 	# Generate API client
