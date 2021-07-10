@@ -53,6 +53,8 @@ class PolymerTagSerializer(serializers.ModelSerializer):
 
 class PolymerTagTreeSerializer(serializers.Serializer):
     name = serializers.CharField()
+    node_id = serializers.CharField()
+    tag_id = serializers.CharField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')
 
 class PolymerTagTreeChildNodeSerializer(serializers.ModelSerializer):

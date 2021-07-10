@@ -2593,12 +2593,18 @@ components:
           properties:
             name:
               type: string
+            node_id:
+              type: string
+            tag_id:
+              type: string
             children:
               type: array
               items:
                 $ref: '#/components/schemas/PolymerTagTreeAttributes'
           required:
             - name
+            - node_id
+            - tag_id
             - children
     FabricationProcess:
       type: object
