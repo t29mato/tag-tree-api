@@ -32,6 +32,20 @@ class Sample(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class PolymerTag(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
+
+class PolymerTagTreeNode(models.Model):
+    polymer_tag = models.ForeignKey(PolymerTag, on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.polymer_tag.name
+
+
 class FabricationProcess(models.Model):
     name_ja = models.CharField(max_length=100)
     parent_id = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
