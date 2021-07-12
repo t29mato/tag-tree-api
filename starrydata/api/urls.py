@@ -7,6 +7,7 @@ urlpatterns = [
     path('figures', views.FigureListView.as_view(), name='figureList'),
     path('samples', views.SampleListView.as_view(), name='sampleList'),
     path('polymer_tags', views.PolymerTagListView.as_view(), name='polyerTagList'),
+    path('polymer_tags/<int:pk>', views.PolymerNodeDetailView.as_view(), name='PolymerNodeDetailView'),
     path('polymer_nodes', views.PolymerNodeListView.as_view(), name='polyerNodeList'),
     path('polymer_nodes/<int:pk>', views.PolymerNodeDetailView.as_view(), name='PolymerNodeDetailView'),
     path('polymer_tag_tree', views.PolymerTagTreeView.as_view(), name='PolymerTagTreeView'),

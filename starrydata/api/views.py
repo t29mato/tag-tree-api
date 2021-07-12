@@ -29,6 +29,10 @@ class PolymerTagListView(generics.ListCreateAPIView):
     queryset = PolymerTag.objects.all()
     serializer_class = PolymerTagSerializer
 
+class PolymerTagDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PolymerTag.objects.all()
+    serializer_class = PolymerTagSerializer
+
 class PolymerNodeListView(generics.ListCreateAPIView):
     queryset = PolymerNode.objects.all()
     serializer_class = PolymerNodeSerializer
