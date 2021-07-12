@@ -800,6 +800,7 @@ paths:
                           maxLength: 255
                       required:
                         - name
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -965,6 +966,7 @@ paths:
                           $ref: '#/components/schemas/reltoone'
                         parent:
                           $ref: '#/components/schemas/reltoone'
+              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -1129,6 +1131,7 @@ paths:
                           $ref: '#/components/schemas/reltoone'
                         parent:
                           $ref: '#/components/schemas/reltoone'
+              type: object
       responses:
         '200':
           description: partialUpdate/api/polymer_tag_tree_nodes/{id}
