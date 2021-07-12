@@ -1,0 +1,2193 @@
+{
+    "nodes": [
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "id": "SXHeRvhZzH",
+                            "modified": 1624241024787,
+                            "text": "図5.1"
+                        }
+                    ],
+                    "id": "gKkpt2bSbG",
+                    "modified": 1624241019740,
+                    "text": "_参考文献"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "lg09xNEp9x",
+                                            "modified": 1624240638634,
+                                            "text": "フッ素樹脂"
+                                        }
+                                    ],
+                                    "id": "5OZt0X8YMR",
+                                    "modified": 1624240634787,
+                                    "text": "フッ化ビニル"
+                                }
+                            ],
+                            "id": "XkPbxCOGUo",
+                            "modified": 1624240629947,
+                            "text": "アセチレン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "YFPZFOaFPQ",
+                                                    "modified": 1624240689295,
+                                                    "text": "尿素樹脂"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "Ab8EuSNxOP",
+                                                            "modified": 1624240696879,
+                                                            "text": "メラミン樹脂"
+                                                        }
+                                                    ],
+                                                    "id": "5zs4oLiLLS",
+                                                    "modified": 1624240692655,
+                                                    "text": "メラミン"
+                                                }
+                                            ],
+                                            "id": "9mrRgRdB1L",
+                                            "modified": 1624240681389,
+                                            "text": "尿素"
+                                        }
+                                    ],
+                                    "id": "QweAvD2oq7",
+                                    "modified": 1624240658330,
+                                    "text": "アンモニア"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "Lg5WKcqmKJ",
+                                                    "modified": 1624240722741,
+                                                    "text": "ポリメタクリル酸メチル"
+                                                }
+                                            ],
+                                            "id": "EMlTmqysSJ",
+                                            "modified": 1624240707350,
+                                            "text": "メタクリル酸メチル"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "BPafFrAHwK",
+                                                    "modified": 1624240734413,
+                                                    "text": "ABS樹脂"
+                                                },
+                                                {
+                                                    "id": "o1jRZnD0KV",
+                                                    "modified": 1624240738812,
+                                                    "text": "NBRゴム"
+                                                },
+                                                {
+                                                    "id": "u5pjRg4h3J",
+                                                    "modified": 1624240745583,
+                                                    "text": "ポリアクリロニトリル"
+                                                }
+                                            ],
+                                            "id": "iT1ljlDHgn",
+                                            "modified": 1624240729375,
+                                            "text": "アクリロニトリル"
+                                        }
+                                    ],
+                                    "id": "wySDjvl4yk",
+                                    "modified": 1624240663170,
+                                    "text": "シアン化水素"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "XPUlqZeCDC",
+                                                    "modified": 1624240769598,
+                                                    "text": "ポリカーボナート"
+                                                }
+                                            ],
+                                            "id": "LV7ehbfZYI",
+                                            "modified": 1624240759870,
+                                            "text": "ジフェニルカーボナート"
+                                        }
+                                    ],
+                                    "id": "Bst1OFCm9D",
+                                    "modified": 1624240667210,
+                                    "text": "ホスゲン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "ACw2j04WmG",
+                                                            "modified": 1624240802565,
+                                                            "text": "ポリアセタール"
+                                                        }
+                                                    ],
+                                                    "id": "kNMpus91YB",
+                                                    "modified": 1624240797029,
+                                                    "text": "トリオキサン"
+                                                },
+                                                {
+                                                    "id": "bSLSvcWm3T",
+                                                    "modified": 1624240820668,
+                                                    "text": "ポリアセタール"
+                                                },
+                                                {
+                                                    "id": "lVYLkZEIb1",
+                                                    "modified": 1624240825365,
+                                                    "text": "フェノール樹脂"
+                                                },
+                                                {
+                                                    "id": "yY3EmIJSS6",
+                                                    "modified": 1624240830148,
+                                                    "text": "尿素樹脂"
+                                                }
+                                            ],
+                                            "id": "npdWDWcrK9",
+                                            "modified": 1624240789181,
+                                            "text": "ホルムアルデヒド"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "b3Obvlh8Eh",
+                                                    "modified": 1624240848586,
+                                                    "text": "ポリメタクリル酸メチル"
+                                                }
+                                            ],
+                                            "id": "496qzudwYN",
+                                            "modified": 1624240842774,
+                                            "text": "メタクリル酸メチル"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "IX3pwtOK3O",
+                                                    "modified": 1624240871016,
+                                                    "text": "ポリエチレンテレフタラート"
+                                                },
+                                                {
+                                                    "id": "gnFixvQoQ3",
+                                                    "modified": 1624240886425,
+                                                    "text": "ポリブチレンテレフタラート"
+                                                }
+                                            ],
+                                            "id": "dQoJxPt0w2",
+                                            "modified": 1624240859348,
+                                            "text": "テレフタル酸ジメチル"
+                                        }
+                                    ],
+                                    "id": "bVZ4bzTK3c",
+                                    "modified": 1624240676381,
+                                    "text": "メタノール"
+                                }
+                            ],
+                            "id": "TMXipxUHnM",
+                            "modified": 1624240653168,
+                            "text": "合成ガス(CO+H2)"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "d236XlgFYv",
+                                                    "modified": 1624240945786,
+                                                    "text": "フッ素樹脂"
+                                                }
+                                            ],
+                                            "id": "jqm1MPdxOR",
+                                            "modified": 1624240940691,
+                                            "text": "テトラフルオロエチレン"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "NJxs9TyKqJ",
+                                                    "modified": 1624240961130,
+                                                    "text": "フッ素樹脂"
+                                                }
+                                            ],
+                                            "id": "4CVRELxeYG",
+                                            "modified": 1624240957682,
+                                            "text": "ヘキサフルオロプロピレン"
+                                        }
+                                    ],
+                                    "id": "QDeRjiHFWd",
+                                    "modified": 1624240932299,
+                                    "text": "ジフルオロクロロメタン"
+                                }
+                            ],
+                            "id": "uOeXxGlHD8",
+                            "modified": 1624240919627,
+                            "text": "クロロホルム"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "4ryiQVGlVn",
+                                            "modified": 1624241003108,
+                                            "text": "シリコーン樹脂"
+                                        }
+                                    ],
+                                    "id": "gRUI2PteF3",
+                                    "modified": 1624240997139,
+                                    "text": "ジメチルシランジオール"
+                                }
+                            ],
+                            "id": "2Q0HWAxWhq",
+                            "modified": 1624240987290,
+                            "text": "塩化メチル"
+                        }
+                    ],
+                    "id": "A5esqUHEGG",
+                    "modified": 1624240612692,
+                    "text": "メタン"
+                },
+                {
+                    "children": [
+                        {
+                            "id": "xcmkpxz5ti",
+                            "modified": 1624246028659,
+                            "text": "ポリエチレン"
+                        },
+                        {
+                            "id": "lLYfuKuGnU",
+                            "modified": 1624246038704,
+                            "text": "エチレンープロピレンゴム"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "gcQBzqZGpB",
+                                            "modified": 1624246059026,
+                                            "text": "ポリスチレン"
+                                        },
+                                        {
+                                            "id": "51ecLp35AR",
+                                            "modified": 1624246061967,
+                                            "text": "ABS樹脂"
+                                        },
+                                        {
+                                            "id": "w1IrOg3btW",
+                                            "modified": 1624246064167,
+                                            "text": "AS樹脂"
+                                        },
+                                        {
+                                            "id": "WVxIP3SSqV",
+                                            "modified": 1624246067038,
+                                            "text": "SBR"
+                                        }
+                                    ],
+                                    "id": "2uzBCy03hm",
+                                    "modified": 1624246055346,
+                                    "text": "スチレン"
+                                }
+                            ],
+                            "id": "aljQbLje4z",
+                            "modified": 1624246049495,
+                            "text": "エチルベンゼン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "brcloYKrZ6",
+                                            "modified": 1624246103809,
+                                            "text": "ポリ塩化ビニル"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "AlKo4KoQL4",
+                                                    "modified": 1624246113706,
+                                                    "text": "フッ素樹脂"
+                                                }
+                                            ],
+                                            "id": "RqLXPEgUYW",
+                                            "modified": 1624246094352,
+                                            "text": "フッ化ビニル"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "hByLladFzu",
+                                                            "modified": 1624246159815,
+                                                            "text": "ポリ塩化ビニリデン"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "id": "1X451omKfp",
+                                                                    "modified": 1624246145945,
+                                                                    "text": "ポリフッ化ビニリデン"
+                                                                }
+                                                            ],
+                                                            "id": "jeowyu7IsI",
+                                                            "modified": 1624246140130,
+                                                            "text": "フッ化ビニリデン"
+                                                        }
+                                                    ],
+                                                    "id": "Nizm2nZvCq",
+                                                    "modified": 1624246134410,
+                                                    "text": "塩化ビニリデン"
+                                                }
+                                            ],
+                                            "id": "tk9KSik5VC",
+                                            "modified": 1624246130134,
+                                            "text": "1,2,2-トリクロロエタン"
+                                        }
+                                    ],
+                                    "id": "p7Xc1UK0I8",
+                                    "modified": 1624246090233,
+                                    "text": "塩化ビニル"
+                                }
+                            ],
+                            "id": "6TXYfQVX0u",
+                            "modified": 1624246085475,
+                            "text": "1,2-ジクロロエタン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "58pRrl80Jj",
+                                    "modified": 1624246210632,
+                                    "text": "ポリ酢酸ビニル"
+                                }
+                            ],
+                            "id": "2vhz58rmlg",
+                            "modified": 1624246200760,
+                            "text": "酢酸ビニル"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "o1OO0LSvzt",
+                                            "modified": 1624246230399,
+                                            "text": "ポリウレタン"
+                                        },
+                                        {
+                                            "id": "8rbND3X5R0",
+                                            "modified": 1624246234664,
+                                            "text": "アルキド樹脂"
+                                        }
+                                    ],
+                                    "id": "cjaBk22YHx",
+                                    "modified": 1624246226112,
+                                    "text": "ペンタエリスリトール"
+                                }
+                            ],
+                            "id": "Dt5KIpMjL2",
+                            "modified": 1624246218480,
+                            "text": "アセトアルデヒド"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "UXAoIyTsMR",
+                                            "modified": 1624246256475,
+                                            "text": "ポリエチレンテレフタラート"
+                                        }
+                                    ],
+                                    "id": "cvHeZU8w7a",
+                                    "modified": 1624246250013,
+                                    "text": "エチレングリコール"
+                                }
+                            ],
+                            "id": "8bwaZ5OdDo",
+                            "modified": 1624246244596,
+                            "text": "エチレンオキシド"
+                        }
+                    ],
+                    "id": "gnil7CuEit",
+                    "modified": 1624246013813,
+                    "text": "エチレン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "id": "OnU93nMCrG",
+                                    "modified": 1624246279122,
+                                    "text": "エチレンープロピレンゴム"
+                                }
+                            ],
+                            "id": "8Ts4DWXZi9",
+                            "modified": 1624246270477,
+                            "text": "ポリプロピレン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "liTaw3e770",
+                                            "modified": 1624246311381,
+                                            "text": "エポキシ樹脂"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "he8gDDrGp5",
+                                                    "modified": 1624246329469,
+                                                    "text": "アルキド樹脂"
+                                                }
+                                            ],
+                                            "id": "RVhA71eZWn",
+                                            "modified": 1624246299718,
+                                            "text": "グリセリン"
+                                        }
+                                    ],
+                                    "id": "LcZvDcqrUw",
+                                    "modified": 1624246295661,
+                                    "text": "エピクロロヒドリン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "WivboAoMJO",
+                                                    "modified": 1624246347636,
+                                                    "text": "アルキド樹脂"
+                                                }
+                                            ],
+                                            "id": "e7OybqL1BT",
+                                            "modified": 1624246342004,
+                                            "text": "グリセリン"
+                                        }
+                                    ],
+                                    "id": "raW8q8mcCu",
+                                    "modified": 1624246336435,
+                                    "text": "アリルアルコール"
+                                }
+                            ],
+                            "id": "X2nMUX4K04",
+                            "modified": 1624246284061,
+                            "text": "塩化アリル"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "fLKUGrIVdU",
+                                            "modified": 1624246368780,
+                                            "text": "ポリウレタン"
+                                        }
+                                    ],
+                                    "id": "2HV0OEVXpZ",
+                                    "modified": 1624246363402,
+                                    "text": "プロピレングリコール"
+                                }
+                            ],
+                            "id": "95Pu2ITq3Y",
+                            "modified": 1624246358236,
+                            "text": "プロピレンオキシド"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "psnyZk8ivH",
+                                                    "modified": 1624246415848,
+                                                    "text": "ナイロン樹脂"
+                                                }
+                                            ],
+                                            "id": "TS50VvTQVG",
+                                            "modified": 1624246401638,
+                                            "text": "アジピン酸"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "COf6dVbnrV",
+                                                    "modified": 1624246420473,
+                                                    "text": "ナイロン樹脂"
+                                                }
+                                            ],
+                                            "id": "XSAj8sehEO",
+                                            "modified": 1624246407455,
+                                            "text": "ヘキサメチレンジアミン"
+                                        }
+                                    ],
+                                    "id": "nKRctPCeyD",
+                                    "modified": 1624246394615,
+                                    "text": "アジポニトリル"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "id": "SYL0Rm9CBW",
+                                            "modified": 1624246433298,
+                                            "text": "ポリアクリルアミド"
+                                        }
+                                    ],
+                                    "id": "LRwMpt2ukn",
+                                    "modified": 1624246428031,
+                                    "text": "アクリルアミド"
+                                }
+                            ],
+                            "id": "62U5VzGiHL",
+                            "modified": 1624246379403,
+                            "text": "アクリロニトリル"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "4XSjvwOPhS",
+                                            "modified": 1624246454895,
+                                            "text": "ポリアクリル酸エステル"
+                                        }
+                                    ],
+                                    "id": "R64U62eEfi",
+                                    "modified": 1624246445430,
+                                    "text": "アクリル酸エステル"
+                                }
+                            ],
+                            "id": "ECQ81B0lZ8",
+                            "modified": 1624246439944,
+                            "text": "アクリル酸"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "p0Jqx9D6mI",
+                                                    "modified": 1624246734620,
+                                                    "text": "フェノール樹脂"
+                                                },
+                                                {
+                                                    "id": "7kTo4dPJb6",
+                                                    "modified": 1624246737397,
+                                                    "text": "エポキシ樹脂"
+                                                },
+                                                {
+                                                    "id": "oa1tougU6Y",
+                                                    "modified": 1624246744799,
+                                                    "text": "ポリカーボナート"
+                                                },
+                                                {
+                                                    "id": "WiELMKKf3w",
+                                                    "modified": 1624246749311,
+                                                    "text": "ポリアレート"
+                                                },
+                                                {
+                                                    "id": "7INnAQQ5cS",
+                                                    "modified": 1624246753840,
+                                                    "text": "ポリスルホン"
+                                                }
+                                            ],
+                                            "id": "OESEsYtH3k",
+                                            "modified": 1624246723939,
+                                            "text": "ビスフェノールA"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "7g77SrS989",
+                                                            "modified": 1624246786141,
+                                                            "text": "ポリメタクリル酸メチル"
+                                                        }
+                                                    ],
+                                                    "id": "YXWiAVJ6Oe",
+                                                    "modified": 1624246780509,
+                                                    "text": "メタクリル酸メチル"
+                                                }
+                                            ],
+                                            "id": "UTqxTbniBc",
+                                            "modified": 1624246774808,
+                                            "text": "アセトン"
+                                        }
+                                    ],
+                                    "id": "P73vFdRxZP",
+                                    "modified": 1624246715353,
+                                    "text": "フェノール"
+                                }
+                            ],
+                            "id": "rMd58qbuyL",
+                            "modified": 1624246708450,
+                            "text": "クメン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "xqzBaR2w9F",
+                                    "modified": 1624246815437,
+                                    "text": "ポリ4-メチル-1-ペンテン"
+                                }
+                            ],
+                            "id": "rbLNo4sKWW",
+                            "modified": 1624246803948,
+                            "text": "4-メチル-1-ペンテン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "Ke9NSkVGwb",
+                                            "modified": 1624246831063,
+                                            "text": "ポリイソプレン"
+                                        }
+                                    ],
+                                    "id": "EyMmm4vziB",
+                                    "modified": 1624246826615,
+                                    "text": "イソプレン"
+                                }
+                            ],
+                            "id": "lVcwEo6HOo",
+                            "modified": 1624246822315,
+                            "text": "2-メチルペンテン"
+                        }
+                    ],
+                    "id": "mOblA6q7Ui",
+                    "modified": 1624246263765,
+                    "text": "プロピレン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "ONN0qgDQqJ",
+                                                            "modified": 1624247066959,
+                                                            "text": "ビスマレイミド樹脂"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "id": "ZDl4WNhqUo",
+                                                                    "modified": 1624247094158,
+                                                                    "text": "ポリウレタン"
+                                                                }
+                                                            ],
+                                                            "id": "jVWTwCg5DP",
+                                                            "modified": 1624247088715,
+                                                            "text": "4,4'-ジフェニルメタンジイソシアネート"
+                                                        }
+                                                    ],
+                                                    "id": "Tt15P6LQ5X",
+                                                    "modified": 1624247058727,
+                                                    "text": "ビスマレイミド"
+                                                }
+                                            ],
+                                            "id": "gvHlN8ErY2",
+                                            "modified": 1624247052515,
+                                            "text": "4,4'-ジアミノジフェニルメタン"
+                                        }
+                                    ],
+                                    "id": "7TIUDXqsMi",
+                                    "modified": 1624247032084,
+                                    "text": "アニリン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "7LH5FarzuB",
+                                                    "modified": 1624247119956,
+                                                    "text": "芳香族ポリアミド"
+                                                }
+                                            ],
+                                            "id": "We4kGX3ehy",
+                                            "modified": 1624247113099,
+                                            "text": "m-フェニレンジアミン"
+                                        }
+                                    ],
+                                    "id": "2jnrGilGet",
+                                    "modified": 1624247106514,
+                                    "text": "m-ジニトロベンゼン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "sq4DxIepFe",
+                                                    "modified": 1624247152733,
+                                                    "text": "芳香族ポリアミド"
+                                                }
+                                            ],
+                                            "id": "2edun45ZYs",
+                                            "modified": 1624247144977,
+                                            "text": "p-フェニレンジアミン"
+                                        }
+                                    ],
+                                    "id": "kgGG8ycnMd",
+                                    "modified": 1624247137729,
+                                    "text": "p-ジニトロベンゼン"
+                                }
+                            ],
+                            "id": "IRsfnLPYVs",
+                            "modified": 1624247027521,
+                            "text": "ニトロベンゼン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "QjNjL7PRtB",
+                                    "modified": 1624247187235,
+                                    "text": "レゾルシン"
+                                }
+                            ],
+                            "id": "MaPX1fhcjS",
+                            "modified": 1624247181000,
+                            "text": "m-ベンゼンジスルホン酸"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "dKUoGH6izg",
+                                                    "modified": 1624247233241,
+                                                    "text": "芳香族ポリアミド"
+                                                }
+                                            ],
+                                            "id": "l1XfwWrEjC",
+                                            "modified": 1624247222756,
+                                            "text": "4,4'-ジアミノジフェニルエーテル"
+                                        }
+                                    ],
+                                    "id": "iXbaGquXi2",
+                                    "modified": 1624247204184,
+                                    "text": "p-クロロニトロベンゼン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "id": "i9jAgv8bZO",
+                                            "modified": 1624247257195,
+                                            "text": "ポリフェニレンスルフィド"
+                                        }
+                                    ],
+                                    "id": "L8fLc0CS1u",
+                                    "modified": 1624247245143,
+                                    "text": "p-ジクロロベンゼン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "id": "VnxJbxXrZG",
+                                            "modified": 1624247276354,
+                                            "text": "ポリスルホン"
+                                        },
+                                        {
+                                            "id": "lriRdOCrD4",
+                                            "modified": 1624247281362,
+                                            "text": "ポリエーテルスルホン"
+                                        }
+                                    ],
+                                    "id": "SQHojDzyLT",
+                                    "modified": 1624247270655,
+                                    "text": "4,4'-ジクロロジフェニルスルホン"
+                                }
+                            ],
+                            "id": "UDnxg4Pd7R",
+                            "modified": 1624247197355,
+                            "text": "クロロベンゼン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "SPJL8vDQxS",
+                                                    "modified": 1624247377636,
+                                                    "text": "ポリフェニレンエーテル"
+                                                }
+                                            ],
+                                            "id": "vEyHg7geKk",
+                                            "modified": 1624247311398,
+                                            "text": "2,6-キシレノール"
+                                        },
+                                        {
+                                            "id": "VIMtSxWckG",
+                                            "modified": 1624247382179,
+                                            "text": "o-クレゾール"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "vkg1zJrcfG",
+                                                    "modified": 1624247396879,
+                                                    "text": "液晶ポリマー"
+                                                }
+                                            ],
+                                            "id": "GKYllcIkS1",
+                                            "modified": 1624247389652,
+                                            "text": "p-オキシ安息香酸"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "IjVGVX2jCU",
+                                                    "modified": 1624247418684,
+                                                    "text": "ポリエーテルスルホン"
+                                                }
+                                            ],
+                                            "id": "AcS1TAM5yI",
+                                            "modified": 1624247412217,
+                                            "text": "4,4-ジヒドロキシジフェニルスルホン"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "oFZ4E3z82P",
+                                                    "modified": 1624247431582,
+                                                    "text": "ポリカーボナート"
+                                                }
+                                            ],
+                                            "id": "6j9dpsdOHl",
+                                            "modified": 1624247426550,
+                                            "text": "ジフェニルカーボナート"
+                                        },
+                                        {
+                                            "id": "Cb1N5KsLyQ",
+                                            "modified": 1624247438483,
+                                            "text": "p-フェニルフェノール"
+                                        }
+                                    ],
+                                    "id": "A3iMQ7XEYF",
+                                    "modified": 1624247297562,
+                                    "text": "フェノール"
+                                }
+                            ],
+                            "id": "0lDTQXaiOD",
+                            "modified": 1624247294961,
+                            "text": "クメン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "WQTadADbax",
+                                    "modified": 1624247361207,
+                                    "text": "レゾルシン"
+                                }
+                            ],
+                            "id": "k0mzAs5r0n",
+                            "modified": 1624247353853,
+                            "text": "m-ジイソプロピルベンゼン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "pgCXMhp48i",
+                                    "modified": 1624247473631,
+                                    "text": "ヒドロキノン"
+                                }
+                            ],
+                            "id": "hKpY8cVIfL",
+                            "modified": 1624247469163,
+                            "text": "p-ジイソプロピルベンゼン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "9Fqk354lKE",
+                                            "modified": 1624247485148,
+                                            "text": "ポリスチレン"
+                                        },
+                                        {
+                                            "id": "v7PRdxbHDL",
+                                            "modified": 1624247497629,
+                                            "text": "イオン交換樹脂"
+                                        }
+                                    ],
+                                    "id": "W9vsOSThqc",
+                                    "modified": 1624247481590,
+                                    "text": "スチレン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "OAKuoxlV1x",
+                                                    "modified": 1624247526893,
+                                                    "text": "イオン交換樹脂"
+                                                }
+                                            ],
+                                            "id": "M7aSH5pdOD",
+                                            "modified": 1624247518633,
+                                            "text": "p-ジビニルベンゼン"
+                                        }
+                                    ],
+                                    "id": "6eONd5OVTn",
+                                    "modified": 1624247509817,
+                                    "text": "p-ジエチルベンゼン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "Pp4w7neSPX",
+                                                    "modified": 1624247551813,
+                                                    "text": "ナイロン6"
+                                                }
+                                            ],
+                                            "id": "6nNA204aLM",
+                                            "modified": 1624247547324,
+                                            "text": "ε-カプロラクタム"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "fwCF7svLLm",
+                                                            "modified": 1624247572494,
+                                                            "text": "ナイロン66"
+                                                        }
+                                                    ],
+                                                    "id": "UhJaUICKVz",
+                                                    "modified": 1624247566561,
+                                                    "text": "ヘキサメチレンジアミン"
+                                                }
+                                            ],
+                                            "id": "Fhc6eoZ688",
+                                            "modified": 1624247558129,
+                                            "text": "アジピン酸"
+                                        }
+                                    ],
+                                    "id": "okBjf73eOM",
+                                    "modified": 1624247534101,
+                                    "text": "シクロヘキサン"
+                                }
+                            ],
+                            "id": "PTEs3uzlA2",
+                            "modified": 1624247478470,
+                            "text": "エチルベンゼン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "0GbiW65PvG",
+                                    "modified": 1624247587489,
+                                    "text": "不飽和ポリエステル"
+                                }
+                            ],
+                            "id": "KaziZNDicU",
+                            "modified": 1624247579562,
+                            "text": "無水マレイン酸"
+                        }
+                    ],
+                    "id": "YiEsIang6a",
+                    "modified": 1624247017683,
+                    "text": "ベンゼン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "id": "0UpzZYWbYF",
+                                    "modified": 1624247639624,
+                                    "text": "ポリブタジエン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "c0U6ZmnCFF",
+                                                    "modified": 1624247676371,
+                                                    "text": "ナイロン6,12"
+                                                }
+                                            ],
+                                            "id": "eJU7P5bRud",
+                                            "modified": 1624247669901,
+                                            "text": "ドデカン二酸"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "STXrjMA6IS",
+                                                    "modified": 1624247695035,
+                                                    "text": "ナイロン12"
+                                                }
+                                            ],
+                                            "id": "ObT7FqhKSp",
+                                            "modified": 1624247684800,
+                                            "text": "ラウロラクタム"
+                                        }
+                                    ],
+                                    "id": "qZvhWROhYB",
+                                    "modified": 1624247663532,
+                                    "text": "シクロドデカ-1,5,9-トリエン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "iBZGv7l2kQ",
+                                                    "modified": 1624247738668,
+                                                    "text": "ポリクロロプレン"
+                                                }
+                                            ],
+                                            "id": "s8esIhwAw5",
+                                            "modified": 1624247733511,
+                                            "text": "クロロプレン"
+                                        }
+                                    ],
+                                    "id": "OSDfErmVXC",
+                                    "modified": 1624247712915,
+                                    "text": "3,4-ジクロロ-1-ブテン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "sL0hoNSocl",
+                                                    "modified": 1624247815323,
+                                                    "text": "ポリブチレンテレフタレート"
+                                                }
+                                            ],
+                                            "id": "GBkXZxYUeO",
+                                            "modified": 1624247805456,
+                                            "text": "1,4-ブタンジオール"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "nC7PpFRT8l",
+                                                            "modified": 1624247835816,
+                                                            "text": "ナイロン66"
+                                                        }
+                                                    ],
+                                                    "id": "jgGLkcUaYL",
+                                                    "modified": 1624247829620,
+                                                    "text": "アジピン酸"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "id": "ng6NbVCTsD",
+                                                            "modified": 1624247847608,
+                                                            "text": "ナイロン66"
+                                                        }
+                                                    ],
+                                                    "id": "7VkEAiX8xP",
+                                                    "modified": 1624247844628,
+                                                    "text": "ヘキサメチレンジアミン"
+                                                }
+                                            ],
+                                            "id": "UUITjG2Rp3",
+                                            "modified": 1624247826380,
+                                            "text": "アジポニトリル"
+                                        }
+                                    ],
+                                    "id": "M61oYfSNig",
+                                    "modified": 1624247757081,
+                                    "text": "1,4-ジクロロ-2-ブテン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "id": "MlkO9RL4VF",
+                                            "modified": 1624247905459,
+                                            "text": "エチレンープロピレンターポリマー"
+                                        }
+                                    ],
+                                    "id": "VUEXfaPEFZ",
+                                    "modified": 1624247878263,
+                                    "text": "5-エチリデンノルボルネン"
+                                }
+                            ],
+                            "id": "zluXIhKEYD",
+                            "modified": 1624247634352,
+                            "text": "ブタジエン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "kX9aUbt0u9",
+                                    "modified": 1624247926522,
+                                    "text": "ポリイソブテン"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "wdmXs37K8y",
+                                                    "modified": 1624247945841,
+                                                    "text": "ポリメタクリル酸メチル"
+                                                }
+                                            ],
+                                            "id": "Gao0wIh9Oe",
+                                            "modified": 1624247939729,
+                                            "text": "メタクリル酸メチル"
+                                        }
+                                    ],
+                                    "id": "W0fS1JbmXO",
+                                    "modified": 1624247933071,
+                                    "text": "メタクリル酸"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "id": "eGZvYsaxtz",
+                                            "modified": 1624247957649,
+                                            "text": "ポリイソプレン"
+                                        }
+                                    ],
+                                    "id": "oLX2CnJxdZ",
+                                    "modified": 1624247952025,
+                                    "text": "イソプレン"
+                                },
+                                {
+                                    "id": "g21qNh02kl",
+                                    "modified": 1624247963023,
+                                    "text": "ブチルゴム"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "8euMQ4tjxM",
+                                                    "modified": 1624247978999,
+                                                    "text": "不飽和ポリエステル"
+                                                }
+                                            ],
+                                            "id": "EhJhWTh1vd",
+                                            "modified": 1624248005124,
+                                            "text": "無水マレイン酸"
+                                        },
+                                        {
+                                            "id": "pKKfxgH5fP",
+                                            "modified": 1624247986052,
+                                            "text": "ポリ1-ブテン"
+                                        }
+                                    ],
+                                    "id": "zaH2aAzGE6",
+                                    "modified": 1624248005820,
+                                    "text": "1-,2-ブテン"
+                                }
+                            ],
+                            "id": "CCFCg6SvpF",
+                            "modified": 1624247919951,
+                            "text": "イソブテン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "EYkFs323Ii",
+                                                    "modified": 1624248095696,
+                                                    "text": "非晶性ポリオレフィン樹脂"
+                                                }
+                                            ],
+                                            "id": "btoW7VSkaR",
+                                            "modified": 1624248058966,
+                                            "text": "ノルボルネン"
+                                        },
+                                        {
+                                            "id": "xRpHbHlYda",
+                                            "modified": 1624248126836,
+                                            "text": "石油樹脂"
+                                        }
+                                    ],
+                                    "id": "D3OO1oj3t3",
+                                    "modified": 1624248056094,
+                                    "text": "シクロペンタジエン"
+                                }
+                            ],
+                            "id": "CR0xKJvu3H",
+                            "modified": 1624248048718,
+                            "text": "ジシクロペンタジエン"
+                        }
+                    ],
+                    "id": "dNAxWby5pV",
+                    "modified": 1624247630957,
+                    "text": "C4留分"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "KYfnpkhqsl",
+                                            "modified": 1624248163060,
+                                            "text": "ポリウレタン"
+                                        }
+                                    ],
+                                    "id": "zxavhI89lJ",
+                                    "modified": 1624248156776,
+                                    "text": "トリレンジイソシアナート"
+                                }
+                            ],
+                            "id": "kKDCUD5koY",
+                            "modified": 1624248143004,
+                            "text": "ジニトロトルエン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "B4dxyS6NxN",
+                                            "modified": 1624248250936,
+                                            "text": "フェノール樹脂"
+                                        }
+                                    ],
+                                    "id": "x1tJ6nSsuO",
+                                    "modified": 1624248245792,
+                                    "text": "クレゾール"
+                                }
+                            ],
+                            "id": "mTJ0e0Cj0Q",
+                            "modified": 1624248172292,
+                            "text": "シメン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "ekBoFPQ8Au",
+                                            "modified": 1624248276727,
+                                            "text": "フェノール樹脂"
+                                        }
+                                    ],
+                                    "id": "SNjJSTzTgq",
+                                    "modified": 1624248272198,
+                                    "text": "フェノール"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "id": "bjlXAOi3J6",
+                                            "modified": 1624248290203,
+                                            "text": "ナイロン6"
+                                        }
+                                    ],
+                                    "id": "zrkLM1D1PY",
+                                    "modified": 1624248286707,
+                                    "text": "ε-カプロラクタム"
+                                }
+                            ],
+                            "id": "lEAyfYQ5xF",
+                            "modified": 1624248266903,
+                            "text": "安息香酸"
+                        }
+                    ],
+                    "id": "Mj40G8WH92",
+                    "modified": 1624248132869,
+                    "text": "トルエン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "UKhZA2tIVU",
+                                                    "modified": 1624241316624,
+                                                    "text": "ポリアミドイミド"
+                                                }
+                                            ],
+                                            "id": "Slf8M6BI2a",
+                                            "modified": 1624241309521,
+                                            "text": "無水トリメリット酸"
+                                        }
+                                    ],
+                                    "id": "fjZHHZs7Gp",
+                                    "modified": 1624241302585,
+                                    "text": "トリメリット酸"
+                                }
+                            ],
+                            "id": "K4brgUzFrb",
+                            "modified": 1624241292170,
+                            "text": "ブソイドクメン"
+                        }
+                    ],
+                    "id": "ikVQYh3WtP",
+                    "modified": 1624241279338,
+                    "text": "トリメチルベンゼン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "id": "AZCpXVHyqn",
+                                    "modified": 1624241343056,
+                                    "text": "ポリイミド"
+                                }
+                            ],
+                            "id": "tOYNvjnSjQ",
+                            "modified": 1624241338145,
+                            "text": "無水ピロメリット酸"
+                        }
+                    ],
+                    "id": "37QMTNGO3l",
+                    "modified": 1624241329096,
+                    "text": "デュレン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "zuN5L5BMOe",
+                                            "modified": 1624241132604,
+                                            "text": "フタル酸ジアリル樹脂"
+                                        }
+                                    ],
+                                    "id": "7mi1FBAJtT",
+                                    "modified": 1624241127029,
+                                    "text": "フタル酸ジアリル"
+                                }
+                            ],
+                            "id": "v6TgvKH9hY",
+                            "modified": 1624241117765,
+                            "text": "無水フタル酸"
+                        }
+                    ],
+                    "id": "RNo4CfPGM9",
+                    "modified": 1624241076310,
+                    "text": "ナフタレン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "KWPD4dYOPf",
+                                                    "modified": 1624241148733,
+                                                    "text": "フタル酸ジアリル樹脂"
+                                                }
+                                            ],
+                                            "id": "EfUYyYICGP",
+                                            "modified": 1624241148068,
+                                            "text": "フタル酸ジアリル"
+                                        }
+                                    ],
+                                    "id": "S18nD2qRvU",
+                                    "modified": 1624241139980,
+                                    "text": "無水フタル酸"
+                                }
+                            ],
+                            "id": "T1WPXTQxU5",
+                            "modified": 1624241108419,
+                            "text": "o-キシレン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "1KRxAo9UcI",
+                                                    "modified": 1624241188285,
+                                                    "text": "ポリアレート"
+                                                }
+                                            ],
+                                            "id": "2dbWuXuIG0",
+                                            "modified": 1624241180099,
+                                            "text": "塩化イソフタロイル"
+                                        }
+                                    ],
+                                    "id": "zC1qPRI0y6",
+                                    "modified": 1624241167859,
+                                    "text": "イソフタル酸"
+                                }
+                            ],
+                            "id": "TaD079JCC6",
+                            "modified": 1624241162145,
+                            "text": "m-キシレン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "id": "t6KnpgOPSC",
+                                            "modified": 1624241210538,
+                                            "text": "テレフタル酸ジメチル"
+                                        },
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "III13fQbMH",
+                                                    "modified": 1624241232066,
+                                                    "text": "ポリアレート"
+                                                }
+                                            ],
+                                            "id": "6UycrGq5yo",
+                                            "modified": 1624241226196,
+                                            "text": "塩化テレフタロイル"
+                                        },
+                                        {
+                                            "id": "bJch9uV9Hg",
+                                            "modified": 1624241248914,
+                                            "text": "ポリエチレンテレフタラート"
+                                        },
+                                        {
+                                            "id": "emovdGU065",
+                                            "modified": 1624241261400,
+                                            "text": "ポリブチレンテレフタラート"
+                                        }
+                                    ],
+                                    "id": "gB7tbeBDQ4",
+                                    "modified": 1624241205001,
+                                    "text": "テレフタル酸"
+                                }
+                            ],
+                            "id": "Rncty8Aa5W",
+                            "modified": 1624241199046,
+                            "text": "p-キシレン"
+                        }
+                    ],
+                    "id": "HFaXK9Br60",
+                    "modified": 1624241101805,
+                    "text": "キシレン"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "TBUwIB0ELr",
+                                                    "modified": 1624241402259,
+                                                    "text": "ポリ-d,l-乳酸"
+                                                }
+                                            ],
+                                            "id": "xTO7CVOaEd",
+                                            "modified": 1624241384035,
+                                            "text": "d,l-ラクチド"
+                                        }
+                                    ],
+                                    "id": "F8BMEddy5C",
+                                    "modified": 1624241377771,
+                                    "text": "d,l-乳酸"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "id": "M026k0dnAY",
+                                                    "modified": 1624241416743,
+                                                    "text": "ポリエチレン"
+                                                }
+                                            ],
+                                            "id": "NJGQMu2JCD",
+                                            "modified": 1624241412894,
+                                            "text": "エチレン"
+                                        }
+                                    ],
+                                    "id": "Ys3Eqb9FWA",
+                                    "modified": 1624241409654,
+                                    "text": "バイオエタノール"
+                                }
+                            ],
+                            "id": "hmGKLapLXC",
+                            "modified": 1624241354208,
+                            "text": "グルコース"
+                        },
+                        {
+                            "id": "s4aiOFokWI",
+                            "modified": 1624246476677,
+                            "text": ""
+                        }
+                    ],
+                    "id": "HFhT0XFA9y",
+                    "modified": 1624248333986,
+                    "text": "バイオポリマー"
+                }
+            ],
+            "id": "E2NAVqvKpn",
+            "modified": 1624240609666,
+            "text": "原料による分類"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "id": "fONAdde6IK",
+                                    "modified": 1624244591809,
+                                    "text": "ポリエチレン"
+                                },
+                                {
+                                    "id": "wIqixuKIhc",
+                                    "modified": 1624244597002,
+                                    "text": "ポリプロピレン"
+                                },
+                                {
+                                    "id": "6UN8XMnwla",
+                                    "modified": 1624244612358,
+                                    "text": "ポリ4-メチル-1-ペンテン"
+                                }
+                            ],
+                            "id": "OKZ6tsFyyg",
+                            "modified": 1624245318727,
+                            "text": "ポリオレフィン"
+                        },
+                        {
+                            "id": "LC2p0KUDms",
+                            "modified": 1624244616897,
+                            "text": "ポリスチレン"
+                        },
+                        {
+                            "id": "iQzd1nNney",
+                            "modified": 1624244619278,
+                            "text": "AS樹脂"
+                        },
+                        {
+                            "id": "MwDFKDwfvF",
+                            "modified": 1624245515343,
+                            "text": "ABS樹脂"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "oEYYExUbjU",
+                                    "modified": 1624244632853,
+                                    "text": "ポリ塩化ビニル"
+                                },
+                                {
+                                    "id": "h05ba8Y6ym",
+                                    "modified": 1624244638317,
+                                    "text": "ポリ塩化ビニリデン"
+                                }
+                            ],
+                            "id": "nOaJTYETb6",
+                            "modified": 1624245519911,
+                            "text": "塩素系樹脂"
+                        },
+                        {
+                            "id": "rYxtxW7ioG",
+                            "modified": 1624244642646,
+                            "text": "ポリ酢酸ビニル"
+                        },
+                        {
+                            "id": "SzmzaZB2CT",
+                            "modified": 1624244648686,
+                            "text": "ポリビニルアルコール"
+                        },
+                        {
+                            "id": "C6zhsLU4Mc",
+                            "modified": 1624244658032,
+                            "text": "ポリビニルブチラール"
+                        },
+                        {
+                            "id": "u7SdwDGOop",
+                            "modified": 1624244665382,
+                            "text": "フタル酸ジアリル樹脂"
+                        },
+                        {
+                            "id": "2tZnynGMZd",
+                            "modified": 1624244669549,
+                            "text": "フッ素系樹脂"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "O9UP7KuU5O",
+                                    "modified": 1624244679709,
+                                    "text": "ポリメタクリル酸メチル"
+                                },
+                                {
+                                    "id": "jcid2VFJxa",
+                                    "modified": 1624244685199,
+                                    "text": "ポリアクリル酸"
+                                },
+                                {
+                                    "id": "Ju2bDL2scs",
+                                    "modified": 1624244694631,
+                                    "text": "ポリアクリル酸メチル"
+                                },
+                                {
+                                    "id": "OfKNehW2o6",
+                                    "modified": 1624244702158,
+                                    "text": "ポリアクリロニトリル"
+                                },
+                                {
+                                    "id": "Dx6X3YXPbu",
+                                    "modified": 1624244709070,
+                                    "text": "ポリアクリルアミド"
+                                }
+                            ],
+                            "id": "QhlJDAht3i",
+                            "modified": 1624245477767,
+                            "text": "ポリアクリル"
+                        },
+                        {
+                            "id": "4wUasJ81Hv",
+                            "modified": 1624244715894,
+                            "text": "ポリブタジエン"
+                        },
+                        {
+                            "id": "uYSfqJAOGn",
+                            "modified": 1624244723851,
+                            "text": "ポリ1-ブテン"
+                        },
+                        {
+                            "id": "joSIMgz1AH",
+                            "modified": 1624244728845,
+                            "text": "ポリイソプレン"
+                        },
+                        {
+                            "id": "8FB1q8xKry",
+                            "modified": 1624244733877,
+                            "text": "ポリクロロプレン"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "wRHEkC6sk3",
+                                    "modified": 1624244743997,
+                                    "text": "エチレンプロピレンゴム"
+                                },
+                                {
+                                    "id": "DWbkOeMkmO",
+                                    "modified": 1624244748157,
+                                    "text": "ブチルゴム"
+                                },
+                                {
+                                    "id": "WWGIcTPqtV",
+                                    "modified": 1624244752805,
+                                    "text": "ニトリルゴム"
+                                },
+                                {
+                                    "id": "dttJVS0UNZ",
+                                    "modified": 1624244756909,
+                                    "text": "アクリルゴム"
+                                },
+                                {
+                                    "id": "hhxC63bkiV",
+                                    "modified": 1624244761181,
+                                    "text": "シリコーンゴム"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "id": "tjHYjYBNe1",
+                                            "modified": 1624244782338,
+                                            "text": "フッ化ビニリデン系"
+                                        },
+                                        {
+                                            "id": "70r9MnvySG",
+                                            "modified": 1624244837649,
+                                            "text": "テトラフルオロエチレン/プロピレン系"
+                                        },
+                                        {
+                                            "id": "EdtshOHrVQ",
+                                            "modified": 1624244860337,
+                                            "text": "テトラフルオロエチレン/ペルフルオロメチルビニルエーテル系"
+                                        },
+                                        {
+                                            "id": "89SYuhiqNY",
+                                            "modified": 1624244878440,
+                                            "text": "ホスファゼン系"
+                                        }
+                                    ],
+                                    "id": "7z5Daecgpj",
+                                    "modified": 1624244764069,
+                                    "text": "フッ素ゴム"
+                                }
+                            ],
+                            "id": "31yzGb4zax",
+                            "modified": 1624245293037,
+                            "text": "ゴム"
+                        }
+                    ],
+                    "id": "gOy3LSGzmw",
+                    "modified": 1624244587416,
+                    "text": "付加重合系"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "id": "KtFdLPlg6u",
+                                    "modified": 1624244899224,
+                                    "text": "ナイロン66"
+                                },
+                                {
+                                    "id": "FTqXjLZOjS",
+                                    "modified": 1624244905280,
+                                    "text": "ナイロン46"
+                                },
+                                {
+                                    "id": "zmWMmbIXnc",
+                                    "modified": 1624244910168,
+                                    "text": "ナイロン610"
+                                },
+                                {
+                                    "id": "NuVEtQRhVp",
+                                    "modified": 1624244919543,
+                                    "text": "ナイロン612"
+                                }
+                            ],
+                            "id": "Pou4K9Rg9f",
+                            "modified": 1624244893464,
+                            "text": "ナイロンn,m"
+                        },
+                        {
+                            "id": "nchK8lIZ7p",
+                            "modified": 1624244930855,
+                            "text": "ナイロンMXD6"
+                        },
+                        {
+                            "id": "6HOg8MXy3l",
+                            "modified": 1624244942474,
+                            "text": "芳香族ポリアミド"
+                        },
+                        {
+                            "id": "j6cGtEOSBD",
+                            "modified": 1624244949390,
+                            "text": "ポリカーボナート"
+                        },
+                        {
+                            "id": "L6rIltCzgH",
+                            "modified": 1624244953270,
+                            "text": "ポリ乳酸"
+                        },
+                        {
+                            "id": "GObc4e3P3G",
+                            "modified": 1624244962120,
+                            "text": "ポリエチレンテレフタラート"
+                        },
+                        {
+                            "id": "ASc6Pmunu5",
+                            "modified": 1624244974501,
+                            "text": "ポリブチレンテレフタラート"
+                        },
+                        {
+                            "id": "RnuXSAQwM7",
+                            "modified": 1624244990708,
+                            "text": "ポリエチレンナフタラート"
+                        },
+                        {
+                            "id": "5GOIXU1HeJ",
+                            "modified": 1624244996047,
+                            "text": "ポリアレート"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "RpVExUs7oL",
+                                    "modified": 1624245003900,
+                                    "text": "I型"
+                                },
+                                {
+                                    "id": "l0w14rkCNH",
+                                    "modified": 1624245007236,
+                                    "text": "II型"
+                                },
+                                {
+                                    "id": "d6omuPX8eg",
+                                    "modified": 1624245011268,
+                                    "text": "III型"
+                                }
+                            ],
+                            "id": "UxqxyBT02x",
+                            "modified": 1624245001431,
+                            "text": "液晶ポリマー"
+                        },
+                        {
+                            "id": "PXZv3RuiDf",
+                            "modified": 1624245025421,
+                            "text": "変性ポリフェニレンエーテル"
+                        },
+                        {
+                            "id": "rhDr8Twmcz",
+                            "modified": 1624245032038,
+                            "text": "ポリエーテルケトン"
+                        },
+                        {
+                            "id": "Z9WtlQtoMo",
+                            "modified": 1624245041262,
+                            "text": "ポリエーテルエーテルケトン"
+                        },
+                        {
+                            "id": "ONpZjmekeo",
+                            "modified": 1624245049479,
+                            "text": "不飽和ポリエステル"
+                        },
+                        {
+                            "id": "HO76UrZInr",
+                            "modified": 1624245055942,
+                            "text": "アルキド樹脂"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "hVkv2JLsYS",
+                                    "modified": 1624245065501,
+                                    "text": "ピロメリット酸型"
+                                },
+                                {
+                                    "id": "FVMgnU5z7p",
+                                    "modified": 1624245070470,
+                                    "text": "ビフェニル型"
+                                },
+                                {
+                                    "id": "LMgW8XhDSt",
+                                    "modified": 1624245075541,
+                                    "text": "ベンゾフェノン型"
+                                }
+                            ],
+                            "id": "tAJRSoVEBR",
+                            "modified": 1624245060349,
+                            "text": "ポリイミド"
+                        },
+                        {
+                            "id": "T7jQoGIDqP",
+                            "modified": 1624245101679,
+                            "text": "ポリアミドイミド（トリメリット酸型）"
+                        },
+                        {
+                            "id": "ZC1UnzephJ",
+                            "modified": 1624245106786,
+                            "text": "ポリスルホン"
+                        },
+                        {
+                            "id": "nA03HNKYDT",
+                            "modified": 1624245114186,
+                            "text": "ポリフェニルスルフィド"
+                        },
+                        {
+                            "id": "PY9qz9Vp9C",
+                            "modified": 1624245120427,
+                            "text": "ポリエーテルスルホン"
+                        },
+                        {
+                            "id": "9wCjgzBffX",
+                            "modified": 1624245125467,
+                            "text": "シリコーン樹脂"
+                        }
+                    ],
+                    "id": "6qn8V2u6DA",
+                    "modified": 1624244887555,
+                    "text": "重縮合系"
+                },
+                {
+                    "children": [
+                        {
+                            "id": "rT5Ddy3jSi",
+                            "modified": 1624245139114,
+                            "text": "ポリウレタン"
+                        }
+                    ],
+                    "id": "v0RUf4gQu2",
+                    "modified": 1624245132875,
+                    "text": "重付加系"
+                },
+                {
+                    "children": [
+                        {
+                            "id": "HijtGMJ2Hn",
+                            "modified": 1624245163786,
+                            "text": "ビスマレイミド"
+                        },
+                        {
+                            "id": "kkPJnkaf6f",
+                            "modified": 1624245167825,
+                            "text": "フェノール樹脂"
+                        },
+                        {
+                            "id": "o39nDxJOVG",
+                            "modified": 1624245171825,
+                            "text": "尿素樹脂"
+                        },
+                        {
+                            "id": "KfGjExaBky",
+                            "modified": 1624245175242,
+                            "text": "メラミン樹脂"
+                        }
+                    ],
+                    "id": "rD4lEMEQ3I",
+                    "modified": 1624245159458,
+                    "text": "付加縮合系"
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "id": "oLNxTGTF3h",
+                                    "modified": 1624245207718,
+                                    "text": "ナイロン6"
+                                },
+                                {
+                                    "id": "AealRWMbvf",
+                                    "modified": 1624245210886,
+                                    "text": "ナイロン11"
+                                },
+                                {
+                                    "id": "eOB9hMUSiJ",
+                                    "modified": 1624245215549,
+                                    "text": "ナイロン12"
+                                }
+                            ],
+                            "id": "nWnfwLfJOC",
+                            "modified": 1624245203686,
+                            "text": "ナイロンn"
+                        },
+                        {
+                            "id": "kGWGt1G74S",
+                            "modified": 1624245224120,
+                            "text": "ポリエチレンオキシド"
+                        },
+                        {
+                            "id": "ADsAFK97wu",
+                            "modified": 1624245231280,
+                            "text": "ポリプロピレンオキシド"
+                        },
+                        {
+                            "id": "89m1kAcwFr",
+                            "modified": 1624245246375,
+                            "text": "ポリオキシメチレン（ポリアセタール）"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "id": "GJlQxiW8E0",
+                                    "modified": 1624245255779,
+                                    "text": "脂肪族系"
+                                },
+                                {
+                                    "id": "Mnj7yZ4FbK",
+                                    "modified": 1624245258652,
+                                    "text": "芳香族系"
+                                }
+                            ],
+                            "id": "j7ze7mCvKm",
+                            "modified": 1624245251691,
+                            "text": "エポキシ樹脂"
+                        }
+                    ],
+                    "id": "AHZPfb53cE",
+                    "modified": 1624245196425,
+                    "text": "開環重合系"
+                },
+                {
+                    "id": "cdctjgOJ1U",
+                    "modified": 1624248550319,
+                    "text": ""
+                }
+            ],
+            "id": "kMRINp3GTx",
+            "modified": 1624241422419,
+            "text": "合成法による分類"
+        },
+        {
+            "children": [
+                {
+                    "id": "9oL0foboYr",
+                    "modified": 1624240575803,
+                    "text": "化学便覧 第7版 5章"
+                }
+            ],
+            "id": "D6Qt3R16WU",
+            "modified": 1624240546011,
+            "text": "_参考文献"
+        },
+        {
+            "children": [
+                {
+                    "id": "UeWoZacdPB",
+                    "modified": 1624245727085,
+                    "text": "ポリアクリル"
+                },
+                {
+                    "id": "lNWhqB3YOH",
+                    "modified": 1624245729932,
+                    "text": "ポリアミド"
+                },
+                {
+                    "id": "GfiuxNbtwi",
+                    "modified": 1624245738876,
+                    "text": "ポリ酸無水物"
+                },
+                {
+                    "id": "ciFyI1fouR",
+                    "modified": 1624245756608,
+                    "text": "ポリカーボナート"
+                },
+                {
+                    "id": "AHDOZTisnB",
+                    "modified": 1624245763606,
+                    "text": "ポリジエン"
+                },
+                {
+                    "id": "r9O9BXG4p4",
+                    "modified": 1624245768168,
+                    "text": "ポリエステル"
+                },
+                {
+                    "id": "MUH7hwoHR7",
+                    "modified": 1624245773513,
+                    "text": "ポリハロオレフィン"
+                },
+                {
+                    "id": "KZcKyKYq6S",
+                    "modified": 1624245780554,
+                    "text": "ポリイミド"
+                },
+                {
+                    "id": "nsVWN4HOg3",
+                    "modified": 1624245788607,
+                    "text": "ポリイミン"
+                },
+                {
+                    "id": "nRGR5pRaoE",
+                    "modified": 1624245798497,
+                    "text": "ポリケトン"
+                },
+                {
+                    "id": "kjzuRcJV4W",
+                    "modified": 1624245804946,
+                    "text": "ポリオレフィン"
+                },
+                {
+                    "id": "SgXfFQuzO2",
+                    "modified": 1624245819144,
+                    "text": "ポリエーテル"
+                },
+                {
+                    "id": "TprgFGqmVb",
+                    "modified": 1624245823297,
+                    "text": "ポリフェニレン"
+                },
+                {
+                    "id": "9Owa2lNWiy",
+                    "modified": 1624245831096,
+                    "text": "ポリホスファゼン"
+                },
+                {
+                    "id": "ie5t2qmprr",
+                    "modified": 1624245840689,
+                    "text": "ポリシロキサン"
+                },
+                {
+                    "id": "oMfcqCGXcI",
+                    "modified": 1624245846560,
+                    "text": "ポリスチレン"
+                },
+                {
+                    "id": "sR63AjIYHM",
+                    "modified": 1624245852344,
+                    "text": "ポリスルフィド"
+                },
+                {
+                    "id": "TkKr5nDtuz",
+                    "modified": 1624245859120,
+                    "text": "ポリスルホン"
+                },
+                {
+                    "id": "L1I3iJ37w3",
+                    "modified": 1624245865863,
+                    "text": "ポリウレタン"
+                },
+                {
+                    "id": "1Ywom4w54O",
+                    "modified": 1624245869744,
+                    "text": "ポリ尿素"
+                },
+                {
+                    "id": "LMllAZZA7s",
+                    "modified": 1624245874999,
+                    "text": "ポリビニル"
+                },
+                {
+                    "id": "bkDtw3drek",
+                    "modified": 1624245882254,
+                    "text": "その他ポリマー"
+                }
+            ],
+            "id": "fjvTeVdlLl",
+            "modified": 1624245700995,
+            "text": "構造による分類（PoLyInfo）"
+        }
+    ],
+    "structure": "org"
+}
