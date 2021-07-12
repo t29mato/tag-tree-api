@@ -21,14 +21,14 @@ api-docs-fix:
 	yq -i eval '.paths./api/synthesis_method_tags.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/synthesis_method_tag_tree_nodes.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/polymer_tags.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths./api/polymer_tag_tree_nodes.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
+	yq -i eval '.paths./api/polymer_nodes.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 
 	# Add type to PATCH schema
 	yq -i eval '.paths."/api/fabrication_processes/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths."/api/synthesis_method_tags/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths."/api/synthesis_method_tag_tree_nodes/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	# yq -i eval '.paths."/api/polymer_tags/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths."/api/polymer_tag_tree_nodes/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
+	yq -i eval '.paths."/api/polymer_nodes/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 
 	# Remove PUT methods
 	yq -i eval 'del(.paths.[].put)'  ./starrydata/api/docs/openapi.yaml

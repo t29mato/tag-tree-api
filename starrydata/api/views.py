@@ -5,8 +5,8 @@ from rest_framework import generics
 from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
-from starrydata.models import Database, FabricationProcess, Figure, Paper, PolymerTag, PolymerTagTreeNode, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
-from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, FabricationProcessSerializer, PolymerTagSerializer, PolymerTagTreeNodeSerializer, SampleSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer, PolymerTagTreeSerializer
+from starrydata.models import Database, FabricationProcess, Figure, Paper, PolymerTag, PolymerNode, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
+from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, FabricationProcessSerializer, PolymerTagSerializer, PolymerNodeSerializer, SampleSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer, PolymerTagTreeSerializer
 
 class DatabaseListView(generics.ListCreateAPIView):
     queryset = Database.objects.all().order_by('id')
@@ -29,22 +29,22 @@ class PolymerTagListView(generics.ListCreateAPIView):
     queryset = PolymerTag.objects.all()
     serializer_class = PolymerTagSerializer
 
-class PolymerTagTreeNodeListView(generics.ListCreateAPIView):
-    queryset = PolymerTagTreeNode.objects.all()
-    serializer_class = PolymerTagTreeNodeSerializer
+class PolymerNodeListView(generics.ListCreateAPIView):
+    queryset = PolymerNode.objects.all()
+    serializer_class = PolymerNodeSerializer
 
-class PolymerTagTreeNodeDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PolymerTagTreeNode.objects.all()
-    serializer_class = PolymerTagTreeNodeSerializer
+class PolymerNodeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = PolymerNode.objects.all()
+    serializer_class = PolymerNodeSerializer
 
 class PolymerTagTreeView(views.APIView):
     get_serializer = PolymerTagTreeSerializer
     Tree = TypedDict('Tree', {'name': str, 'node_id': int, 'tag_id': int, 'children': Optional[list['Tree']]})
     Node = TypedDict('Tree', {'name': str, 'node_id': int, 'tag_id': int, 'parent_node_id': str})
     def get(self, request):
-        nodes = list(PolymerTagTreeNode.objects.all().annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'polymer_tag_id', 'name'))
+        nodes = list(PolymerNode.objects.all().annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'polymer_tag_id', 'name'))
         # ID 1 is root node.
-        root = PolymerTagTreeNode.objects.filter(id=1).annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name')[0]
+        root = PolymerNode.objects.filter(id=1).annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name')[0]
         tree = self.generateTree(root, nodes)
         serializer = PolymerTagTreeSerializer(data=tree)
         serializer.is_valid()

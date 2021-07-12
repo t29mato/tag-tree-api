@@ -857,9 +857,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/polymer_tag_tree_nodes:
+  /api/polymer_nodes:
     get:
-      operationId: List/api/polymer_tag_tree_nodes
+      operationId: List/api/polymer_nodes
       description: ''
       parameters:
         - $ref: '#/components/parameters/include'
@@ -892,7 +892,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: List/api/polymer_tag_tree_nodes
+          description: List/api/polymer_nodes
           content:
             application/vnd.api+json:
               schema:
@@ -903,7 +903,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/PolymerTagTreeNode'
+                      $ref: '#/components/schemas/PolymerNode'
                   included:
                     type: array
                     uniqueItems: true
@@ -929,7 +929,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     post:
-      operationId: create/api/polymer_tag_tree_nodes
+      operationId: create/api/polymer_nodes
       description: ''
       parameters: []
       tags:
@@ -978,7 +978,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerTagTreeNode'
+                    $ref: '#/components/schemas/PolymerNode'
                   included:
                     type: array
                     uniqueItems: true
@@ -1023,15 +1023,15 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/polymer_tag_tree_nodes/{id}:
+  /api/polymer_nodes/{id}:
     get:
-      operationId: retrieve/api/polymer_tag_tree_nodes/{id}
+      operationId: retrieve/api/polymer_nodes/{id}
       description: ''
       parameters:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer tag tree node.
+          description: A unique integer value identifying this polymer node.
           schema:
             type: string
         - $ref: '#/components/parameters/include'
@@ -1052,7 +1052,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: retrieve/api/polymer_tag_tree_nodes/{id}
+          description: retrieve/api/polymer_nodes/{id}
           content:
             application/vnd.api+json:
               schema:
@@ -1061,7 +1061,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerTagTreeNode'
+                    $ref: '#/components/schemas/PolymerNode'
                   included:
                     type: array
                     uniqueItems: true
@@ -1087,13 +1087,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     patch:
-      operationId: partialUpdate/api/polymer_tag_tree_nodes/{id}
+      operationId: partialUpdate/api/polymer_nodes/{id}
       description: ''
       parameters:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer tag tree node.
+          description: A unique integer value identifying this polymer node.
           schema:
             type: string
       tags:
@@ -1134,7 +1134,7 @@ paths:
               type: object
       responses:
         '200':
-          description: partialUpdate/api/polymer_tag_tree_nodes/{id}
+          description: partialUpdate/api/polymer_nodes/{id}
           content:
             application/vnd.api+json:
               schema:
@@ -1143,7 +1143,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerTagTreeNode'
+                    $ref: '#/components/schemas/PolymerNode'
                   included:
                     type: array
                     uniqueItems: true
@@ -1181,13 +1181,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     delete:
-      operationId: destroy/api/polymer_tag_tree_nodes/{id}
+      operationId: destroy/api/polymer_nodes/{id}
       description: ''
       parameters:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer tag tree node.
+          description: A unique integer value identifying this polymer node.
           schema:
             type: string
       tags:
@@ -2544,7 +2544,7 @@ components:
               maxLength: 255
           required:
             - name
-    PolymerTagTreeNode:
+    PolymerNode:
       type: object
       required:
         - type

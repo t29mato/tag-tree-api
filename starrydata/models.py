@@ -38,7 +38,7 @@ class PolymerTag(models.Model):
     def __str__(self) -> str:
         return self.name
 
-class PolymerTagTreeNode(models.Model):
+class PolymerNode(models.Model):
     polymer_tag = models.ForeignKey(PolymerTag, on_delete=models.CASCADE)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', blank=True, null=True)
 
