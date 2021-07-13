@@ -28,6 +28,7 @@ class SampleListView(generics.ListCreateAPIView):
 class PolymerTagListView(generics.ListCreateAPIView):
     queryset = PolymerTag.objects.all()
     serializer_class = PolymerTagSerializer
+    search_fields = ['name']
 
 class PolymerTagDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = PolymerTag.objects.all()
