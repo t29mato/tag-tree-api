@@ -1417,11 +1417,8 @@ paths:
                 $ref: '#/components/schemas/failure'
   /api/polymer_tag_tree:
     get:
-      operationId: List/api/polymer_tag_tree
+      operationId: retrieve/api/polymer_tag_tree
       description: ''
-      parameters:
-        - $ref: '#/components/parameters/include'
-        - $ref: '#/components/parameters/fields'
       tags:
         - starrydata
       responses:
@@ -1435,19 +1432,7 @@ paths:
                   - data
                 properties:
                   data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/PolymerTagTree'
-                  included:
-                    type: array
-                    uniqueItems: true
-                    items:
-                      $ref: '#/components/schemas/resource'
-                  links:
-                    description: Link members related to primary data
-                    allOf:
-                      - $ref: '#/components/schemas/links'
-                      - $ref: '#/components/schemas/pagination'
+                    $ref: '#/components/schemas/PolymerTagTree'
                   jsonapi:
                     $ref: '#/components/schemas/jsonapi'
         '401':
@@ -2774,6 +2759,7 @@ components:
       required:
         - type
         - id
+        - attributes
       additionalProperties: false
       properties:
         type:
