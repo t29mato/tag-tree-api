@@ -45,6 +45,15 @@ class PolymerNode(models.Model):
     def __str__(self) -> str:
         return self.polymer_tag.name
 
+    class Meta:
+        # 同じ親に同じタグを付与することはできない
+        constraints = [
+            models.UniqueConstraint(
+                fields=["polymer_tag", "parent"],
+                name="polymer_tag_unique"
+            )
+        ]
+
 
 class FabricationProcess(models.Model):
     name_ja = models.CharField(max_length=100)
