@@ -50,16 +50,15 @@ class PolymerTagTreeView(views.APIView):
         nodes = list(PolymerNode.objects.all().annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'polymer_tag_id', 'name'))
         # ID 1 is root node.
         root = PolymerNode.objects.filter(id=kwargs['pk']).annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name')[0]
-        root = PolymerNode.objects.filter(id=1).annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name')[0]
-        tree = self.generateTree(root, nodes)
+        tree = self.__generateTree(root, nodes)
         serializer = PolymerTagTreeSerializer(data=tree)
         serializer.is_valid()
         return Response(serializer.data, status=200)
 
     # FIXME: type hint
-    def generateTree(self, parent: Tree, nodes: Node):
+    def __generateTree(self, parent: Tree, nodes: Node):
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
-        parent['children'] = list(map(lambda child: self.generateTree(child, nodes), children))
+        parent['children'] = list(map(lambda child: self.__generateTree(child, nodes), children))
         return parent
 
 class ListView(generics.ListCreateAPIView):
