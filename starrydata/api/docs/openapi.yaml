@@ -1141,27 +1141,40 @@ paths:
                   type: object
                   required:
                     - type
+                    - attributes
                   additionalProperties: false
                   properties:
                     type:
                       $ref: '#/components/schemas/type'
                     id:
                       $ref: '#/components/schemas/id'
-                    links:
-                      type: object
-                      properties:
-                        self:
-                          $ref: '#/components/schemas/link'
                     attributes:
                       type: object
-                      properties: {}
-                    relationships:
-                      type: object
+                      required:
+                        - polymer_tag
+                        - parent
                       properties:
                         polymer_tag:
-                          $ref: '#/components/schemas/reltoone'
+                          type: object
+                          required:
+                            - type
+                            - id
+                          properties:
+                            type:
+                              $ref: '#/components/schemas/type'
+                            id:
+                              $ref: '#/components/schemas/id'
                         parent:
-                          $ref: '#/components/schemas/reltoone'
+                          type: object
+                          required:
+                            - type
+                            - id
+                          properties:
+                            type:
+                              $ref: '#/components/schemas/type'
+                            id:
+                              $ref: '#/components/schemas/id'
+
               type: object
       responses:
         '201':
