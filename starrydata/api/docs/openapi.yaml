@@ -2800,7 +2800,9 @@ components:
               type: string
             node_id:
               type: string
-            tag_id:
+            polymer_tag_id:
+              type: string
+            parent_node_id:
               type: string
             children:
               type: array
@@ -2809,7 +2811,8 @@ components:
           required:
             - name
             - node_id
-            - tag_id
+            - polymer_tag_id
+            - parent_node_id
             - children
     FabricationProcess:
       type: object
