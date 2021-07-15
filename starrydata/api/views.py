@@ -46,9 +46,9 @@ class PolymerTagTreeDetailView(views.APIView):
     get_serializer = PolymerTagTreeSerializer
     Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'children': Optional[list['Tree']]})
     Node = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'parent_node_id': str})
-    def get(self, request, *args, **kwargs):
+    def get(self, request, pk):
         nodes = list(PolymerNode.objects.all().annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'polymer_tag_id', 'name'))
-        root = PolymerNode.objects.filter(id=kwargs['pk']).annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name')[0]
+        root = PolymerNode.objects.filter(id=pk).annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name')[0]
         tree = self.__generateTree(root, nodes)
         serializer = PolymerTagTreeSerializer(data=tree)
         try:
