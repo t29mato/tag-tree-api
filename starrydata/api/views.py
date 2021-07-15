@@ -42,7 +42,7 @@ class PolymerNodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = PolymerNode.objects.all()
     serializer_class = PolymerNodeSerializer
 
-class PolymerTagTreeView(views.APIView):
+class PolymerTagTreeDetailView(views.APIView):
     get_serializer = PolymerTagTreeSerializer
     Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'children': Optional[list['Tree']]})
     Node = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'parent_node_id': str})
