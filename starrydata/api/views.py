@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
+from django.http import Http404
 from starrydata.models import Database, FabricationProcess, Figure, Paper, PolymerTag, PolymerNode, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
 from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, FabricationProcessSerializer, PolymerTagSerializer, PolymerNodeSerializer, SampleSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer, PolymerTagTreeSerializer
 
@@ -47,7 +48,11 @@ class PolymerTagTreeDetailView(views.APIView):
     Node = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
         nodes = list(PolymerNode.objects.all().annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'polymer_tag_id', 'name'))
-        root = PolymerNode.objects.annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name').get(pk=pk)
+        try:
+            root = PolymerNode.objects.annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name').get(pk=pk)
+        except PolymerNode.DoesNotExist:
+            raise Http404
+
         tree = self.__generateTree(root, nodes)
         serializer = PolymerTagTreeSerializer(data=tree)
         try:
