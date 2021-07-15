@@ -51,7 +51,6 @@ class PolymerTagTreeDetailView(views.APIView):
         root = PolymerNode.objects.filter(id=kwargs['pk']).annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name')[0]
         tree = self.__generateTree(root, nodes)
         serializer = PolymerTagTreeSerializer(data=tree)
-        # テストの実装
         try:
             if not serializer.is_valid():
                 raise ValueError("シリアライズのバリデーションに失敗", serializer.errors)
@@ -59,7 +58,6 @@ class PolymerTagTreeDetailView(views.APIView):
             print(e)
         return Response(serializer.data, status=200)
 
-    # FIXME: type hint
     def __generateTree(self, parent: Tree, nodes: Node):
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
         parent['children'] = list(map(lambda child: self.__generateTree(child, nodes), children))
