@@ -865,7 +865,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer node.
+          description: A unique integer value identifying this polymer tag.
           schema:
             type: string
         - $ref: '#/components/parameters/include'
@@ -895,7 +895,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerNode'
+                    $ref: '#/components/schemas/PolymerTag'
                   included:
                     type: array
                     uniqueItems: true
@@ -927,7 +927,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer node.
+          description: A unique integer value identifying this polymer tag.
           schema:
             type: string
       tags:
@@ -936,6 +936,7 @@ paths:
         content:
           application/vnd.api+json:
             schema:
+              type: object
               required:
                 - data
               properties:
@@ -950,22 +951,11 @@ paths:
                       $ref: '#/components/schemas/type'
                     id:
                       $ref: '#/components/schemas/id'
-                    links:
-                      type: object
-                      properties:
-                        self:
-                          $ref: '#/components/schemas/link'
                     attributes:
                       type: object
-                      properties: {}
-                    relationships:
-                      type: object
                       properties:
-                        polymer_tag:
-                          $ref: '#/components/schemas/reltoone'
-                        parent:
-                          $ref: '#/components/schemas/reltoone'
-              type: object
+                        name:
+                          type: string
       responses:
         '200':
           description: partialUpdate/api/polymer_tags/{id}
@@ -977,7 +967,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerNode'
+                    $ref: '#/components/schemas/PolymerTag'
                   included:
                     type: array
                     uniqueItems: true
