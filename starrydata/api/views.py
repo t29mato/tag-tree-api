@@ -44,7 +44,7 @@ class PolymerNodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PolymerNodeSerializer
 
 class PolymerTagTreeDetailView(views.APIView):
-    Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'children': Optional[list['Tree']]})
+    Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
     Node = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
         nodes = list(PolymerNode.objects.all().annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'polymer_tag_id', 'name'))
@@ -53,7 +53,7 @@ class PolymerTagTreeDetailView(views.APIView):
         except PolymerNode.DoesNotExist:
             raise Http404
 
-        tree = self.__generateTree(root, nodes)
+        tree = self.__generateTree(root, nodes, 0)
         serializer = PolymerTagTreeSerializer(data=tree)
         try:
             if not serializer.is_valid():
@@ -62,9 +62,11 @@ class PolymerTagTreeDetailView(views.APIView):
             print(e)
         return Response(serializer.data, status=200)
 
-    def __generateTree(self, parent: Tree, nodes: Node):
+    def __generateTree(self, parent: Tree, nodes: Node, tree_level: int):
+        tree_level = tree_level + 1
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
-        parent['children'] = list(map(lambda child: self.__generateTree(child, nodes), children))
+        parent['tree_level'] = tree_level
+        parent['children'] = list(map(lambda child: self.__generateTree(child, nodes, tree_level), children))
         return parent
 
 class ListView(generics.ListCreateAPIView):

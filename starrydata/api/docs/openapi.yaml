@@ -2794,6 +2794,8 @@ components:
               type: string
             parent_node_id:
               type: string
+            tree_level:
+              type: number
             children:
               type: array
               items:
@@ -2803,6 +2805,7 @@ components:
             - node_id
             - polymer_tag_id
             - parent_node_id
+            - tree_level
             - children
     FabricationProcess:
       type: object
