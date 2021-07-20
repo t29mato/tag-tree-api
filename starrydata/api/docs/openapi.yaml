@@ -719,6 +719,8 @@ paths:
                 type: object
                 required:
                   - data
+                  - links
+                  - meta
                 properties:
                   data:
                     type: array
@@ -2875,7 +2877,7 @@ components:
           type: object
           required:
             - "page"
-            - "pags"
+            - "pages"
             - "count"
           properties:
             page:
