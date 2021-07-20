@@ -46,10 +46,19 @@ class SampleSerializer(serializers.ModelSerializer):
         model = Sample
         fields = '__all__'
 
+class PolymerNodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PolymerNode
+        fields = '__all__'
+
+
 class PolymerTagSerializer(serializers.ModelSerializer):
+    included_serializers = {
+        'nodes': PolymerNodeSerializer
+    }
     class Meta:
         model = PolymerTag
-        fields = '__all__'
+        fields = ('name', 'nodes')
 
 class PolymerTagTreeSerializer(serializers.Serializer):
     name = serializers.CharField()
@@ -59,10 +68,6 @@ class PolymerTagTreeSerializer(serializers.Serializer):
     tree_level = serializers.IntegerField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')
 
-class PolymerNodeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PolymerNode
-        fields = '__all__'
 
 class FabricationProcessSerializer(serializers.ModelSerializer):
     class Meta:

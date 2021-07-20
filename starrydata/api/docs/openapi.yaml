@@ -726,11 +726,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/PolymerTag'
-                  included:
-                    type: array
-                    uniqueItems: true
-                    items:
-                      $ref: '#/components/schemas/resource'
                   links:
                     description: Link members related to primary data
                     allOf:
@@ -880,16 +875,6 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/PolymerTag'
-                  included:
-                    type: array
-                    uniqueItems: true
-                    items:
-                      $ref: '#/components/schemas/resource'
-                  links:
-                    description: Link members related to primary data
-                    allOf:
-                      - $ref: '#/components/schemas/links'
-                      - $ref: '#/components/schemas/pagination'
         '401':
           description: not authorized
           content:
@@ -2681,6 +2666,36 @@ components:
               maxLength: 255
           required:
             - name
+        relationships:
+          type: object
+          required:
+            - nodes
+          properties:
+            nodes:
+              type: object
+              required:
+                - meta
+                - data
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - count
+                  properties:
+                    count:
+                      type: number
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - type
+                      - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/type'
+                      id:
+                        $ref: '#/components/schemas/id'
     PolymerNode:
       type: object
       required:
