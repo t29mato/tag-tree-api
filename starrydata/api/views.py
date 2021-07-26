@@ -29,7 +29,7 @@ class SampleListView(generics.ListCreateAPIView):
 class TagListView(generics.ListCreateAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-    search_fields = ['name']
+    search_fields = ['name_ja', 'name_en']
 
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tag.objects.all()
@@ -44,12 +44,21 @@ class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = NodeSerializer
 
 class TagTreeDetailView(views.APIView):
-    Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
-    Node = TypedDict('Tree', {'name': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
+    Tree = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
+    Node = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
-        nodes = list(Node.objects.all().annotate(name=F('tag__name'), node_id=F('id'), tag_id=F('tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'tag_id', 'name'))
+        nodes = list(Node.objects.all().annotate(
+            name_ja=F('tag__name_ja'),
+            name_en=F('tag__name_en'),
+            node_id=F('id'),
+            parent_node_id=F('parent_id')
+            ).values('node_id','parent_node_id', 'tag_id', 'name_ja', 'name_en'))
         try:
-            root = Node.objects.annotate(name=F('tag__name'), node_id=F('id'), tag_id=F('tag_id')).values('node_id', 'tag_id', 'name').get(pk=pk)
+            root = Node.objects.annotate(
+                name_ja=F('tag__name_ja'),
+                name_en=F('tag__name_en'),
+                node_id=F('id'),
+                ).values('node_id', 'tag_id', 'name_ja', 'name_en').get(pk=pk)
         except Node.DoesNotExist:
             raise Http404
 

@@ -33,17 +33,18 @@ class Sample(models.Model):
         return self.title
 
 class Tag(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name_ja = models.CharField(max_length=255, unique=True)
+    name_en = models.CharField(max_length=255, unique=True, null=True, blank=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.name_ja
 
 class Node(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='nodes')
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.tag.name
+        return self.tag.name_ja
 
     class Meta:
         # 同じ親に同じタグを付与することはできない

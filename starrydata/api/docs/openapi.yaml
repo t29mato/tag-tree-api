@@ -776,11 +776,14 @@ paths:
                     attributes:
                       type: object
                       properties:
-                        name:
+                        name_ja:
+                          type: string
+                          maxLength: 255
+                        name_en:
                           type: string
                           maxLength: 255
                       required:
-                        - name
+                        - name_ja
               type: object
       responses:
         '201':
@@ -844,7 +847,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer tag.
+          description: A unique integer value identifying this tag.
           schema:
             type: string
         - $ref: '#/components/parameters/include'
@@ -894,7 +897,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer tag.
+          description: A unique integer value identifying this tag.
           schema:
             type: string
       tags:
@@ -921,7 +924,9 @@ paths:
                     attributes:
                       type: object
                       properties:
-                        name:
+                        name_ja:
+                          type: string
+                        name_en:
                           type: string
       responses:
         '200':
@@ -976,7 +981,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer node.
+          description: A unique integer value identifying this node.
           schema:
             type: string
       tags:
@@ -1191,7 +1196,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer node.
+          description: A unique integer value identifying this node.
           schema:
             type: string
         - $ref: '#/components/parameters/include'
@@ -1251,7 +1256,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer node.
+          description: A unique integer value identifying this node.
           schema:
             type: string
       tags:
@@ -1343,7 +1348,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: A unique integer value identifying this polymer node.
+          description: A unique integer value identifying this node.
           schema:
             type: string
       tags:
@@ -2662,11 +2667,14 @@ components:
             id:
               type: integer
               readOnly: true
-            name:
+            name_ja:
+              type: string
+              maxLength: 255
+            name_en:
               type: string
               maxLength: 255
           required:
-            - name
+            - name_ja
         relationships:
           type: object
           required:
@@ -2748,7 +2756,9 @@ components:
     TagTreeAttributes:
           type: object
           properties:
-            name:
+            name_ja:
+              type: string
+            name_en:
               type: string
             node_id:
               type: string
@@ -2763,7 +2773,7 @@ components:
               items:
                 $ref: '#/components/schemas/TagTreeAttributes'
           required:
-            - name
+            - name_ja
             - node_id
             - tag_id
             - parent_node_id

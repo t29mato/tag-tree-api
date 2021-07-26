@@ -58,10 +58,11 @@ class TagSerializer(serializers.ModelSerializer):
     }
     class Meta:
         model = Tag
-        fields = ('name', 'nodes')
+        fields = ('name_ja', 'name_en', 'nodes')
 
 class TagTreeSerializer(serializers.Serializer):
-    name = serializers.CharField()
+    name_ja = serializers.CharField()
+    name_en = serializers.CharField()
     node_id = serializers.CharField()
     tag_id = serializers.CharField()
     parent_node_id = serializers.CharField(required=False)
