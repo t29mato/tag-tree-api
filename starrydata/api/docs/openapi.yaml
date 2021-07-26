@@ -677,9 +677,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/polymer_tags:
+  /api/tags:
     get:
-      operationId: List/api/polymer_tags
+      operationId: List/api/tags
       description: ''
       parameters:
         - $ref: '#/components/parameters/include'
@@ -712,7 +712,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: List/api/polymer_tags
+          description: List/api/tags
           content:
             application/vnd.api+json:
               schema:
@@ -725,7 +725,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/PolymerTag'
+                      $ref: '#/components/schemas/Tag'
                   links:
                     description: Link members related to primary data
                     allOf:
@@ -746,7 +746,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     post:
-      operationId: create/api/polymer_tags
+      operationId: create/api/tags
       description: ''
       parameters: []
       tags:
@@ -793,7 +793,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerTag'
+                    $ref: '#/components/schemas/Tag'
                   included:
                     type: array
                     uniqueItems: true
@@ -836,9 +836,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/polymer_tags/{id}:
+  /api/tags/{id}:
     get:
-      operationId: retrieve/api/polymer_tags/{id}
+      operationId: retrieve/api/tags/{id}
       description: ''
       parameters:
         - name: id
@@ -865,7 +865,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: retrieve/api/polymer_tags/{id}
+          description: retrieve/api/tags/{id}
           content:
             application/vnd.api+json:
               schema:
@@ -874,7 +874,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerTag'
+                    $ref: '#/components/schemas/Tag'
         '401':
           description: not authorized
           content:
@@ -888,7 +888,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     patch:
-      operationId: partialUpdate/api/polymer_tags/{id}
+      operationId: partialUpdate/api/tags/{id}
       description: ''
       parameters:
         - name: id
@@ -925,7 +925,7 @@ paths:
                           type: string
       responses:
         '200':
-          description: partialUpdate/api/polymer_tags/{id}
+          description: partialUpdate/api/tags/{id}
           content:
             application/vnd.api+json:
               schema:
@@ -934,7 +934,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerTag'
+                    $ref: '#/components/schemas/Tag'
                   included:
                     type: array
                     uniqueItems: true
@@ -970,7 +970,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     delete:
-      operationId: destroy/api/polymer_tags/{id}
+      operationId: destroy/api/tags/{id}
       description: ''
       parameters:
         - name: id
@@ -1008,9 +1008,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/polymer_nodes:
+  /api/nodes:
     get:
-      operationId: List/api/polymer_nodes
+      operationId: List/api/nodes
       description: ''
       parameters:
         - $ref: '#/components/parameters/include'
@@ -1043,7 +1043,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: List/api/polymer_nodes
+          description: List/api/nodes
           content:
             application/vnd.api+json:
               schema:
@@ -1054,7 +1054,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/PolymerNode'
+                      $ref: '#/components/schemas/Node'
                   included:
                     type: array
                     uniqueItems: true
@@ -1078,7 +1078,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     post:
-      operationId: create/api/polymer_nodes
+      operationId: create/api/nodes
       description: ''
       parameters: []
       tags:
@@ -1104,10 +1104,10 @@ paths:
                     attributes:
                       type: object
                       required:
-                        - polymer_tag
+                        - tag
                         - parent
                       properties:
-                        polymer_tag:
+                        tag:
                           type: object
                           required:
                             - type
@@ -1140,7 +1140,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerNode'
+                    $ref: '#/components/schemas/Node'
                   included:
                     type: array
                     uniqueItems: true
@@ -1183,9 +1183,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/polymer_nodes/{id}:
+  /api/nodes/{id}:
     get:
-      operationId: retrieve/api/polymer_nodes/{id}
+      operationId: retrieve/api/nodes/{id}
       description: ''
       parameters:
         - name: id
@@ -1212,7 +1212,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: retrieve/api/polymer_nodes/{id}
+          description: retrieve/api/nodes/{id}
           content:
             application/vnd.api+json:
               schema:
@@ -1221,7 +1221,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerNode'
+                    $ref: '#/components/schemas/Node'
                   included:
                     type: array
                     uniqueItems: true
@@ -1245,7 +1245,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     patch:
-      operationId: partialUpdate/api/polymer_nodes/{id}
+      operationId: partialUpdate/api/nodes/{id}
       description: ''
       parameters:
         - name: id
@@ -1285,14 +1285,14 @@ paths:
                     relationships:
                       type: object
                       properties:
-                        polymer_tag:
+                        tag:
                           $ref: '#/components/schemas/reltoone'
                         parent:
                           $ref: '#/components/schemas/reltoone'
               type: object
       responses:
         '200':
-          description: partialUpdate/api/polymer_nodes/{id}
+          description: partialUpdate/api/nodes/{id}
           content:
             application/vnd.api+json:
               schema:
@@ -1301,7 +1301,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerNode'
+                    $ref: '#/components/schemas/Node'
                   included:
                     type: array
                     uniqueItems: true
@@ -1337,7 +1337,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     delete:
-      operationId: destroy/api/polymer_nodes/{id}
+      operationId: destroy/api/nodes/{id}
       description: ''
       parameters:
         - name: id
@@ -1375,9 +1375,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/polymer_tag_tree/{id}:
+  /api/tag_tree/{id}:
     get:
-      operationId: retrieve/api/polymer_tag_tree/{id}
+      operationId: retrieve/api/tag_tree/{id}
       description: ''
       parameters:
         - name: id
@@ -1390,7 +1390,7 @@ paths:
         - starrydata
       responses:
         '200':
-          description: List/api/polymer_tag_tree
+          description: List/api/tag_tree
           content:
             application/vnd.api+json:
               schema:
@@ -1399,7 +1399,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/PolymerTagTree'
+                    $ref: '#/components/schemas/TagTree'
         '401':
           description: not authorized
           content:
@@ -2639,7 +2639,7 @@ components:
           properties:
             paper:
               $ref: '#/components/schemas/reltomany'
-    PolymerTag:
+    Tag:
       type: object
       required:
         - type
@@ -2697,7 +2697,7 @@ components:
                         $ref: '#/components/schemas/type'
                       id:
                         $ref: '#/components/schemas/id'
-    PolymerNode:
+    Node:
       type: object
       required:
         - type
@@ -2722,11 +2722,11 @@ components:
         relationships:
           type: object
           properties:
-            polymer_tag:
+            tag:
               $ref: '#/components/schemas/reltoone'
             parent:
               $ref: '#/components/schemas/reltoone'
-    PolymerTagTree:
+    TagTree:
       type: object
       required:
         - type
@@ -2744,15 +2744,15 @@ components:
             self:
               $ref: '#/components/schemas/link'
         attributes:
-          $ref: '#/components/schemas/PolymerTagTreeAttributes'
-    PolymerTagTreeAttributes:
+          $ref: '#/components/schemas/TagTreeAttributes'
+    TagTreeAttributes:
           type: object
           properties:
             name:
               type: string
             node_id:
               type: string
-            polymer_tag_id:
+            tag_id:
               type: string
             parent_node_id:
               type: string
@@ -2761,11 +2761,11 @@ components:
             children:
               type: array
               items:
-                $ref: '#/components/schemas/PolymerTagTreeAttributes'
+                $ref: '#/components/schemas/TagTreeAttributes'
           required:
             - name
             - node_id
-            - polymer_tag_id
+            - tag_id
             - parent_node_id
             - tree_level
             - children

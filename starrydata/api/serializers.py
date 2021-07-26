@@ -3,7 +3,7 @@ from rest_framework.fields import SerializerMethodField
 from rest_framework_recursive.fields import RecursiveField
 from rest_framework_json_api import serializers
 from rest_framework_serializer_extensions.serializers import SerializerExtensionsMixin
-from starrydata.models import Database, FabricationProcess, Figure, Paper, PolymerTag, PolymerNode, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
+from starrydata.models import Database, FabricationProcess, Figure, Paper, Tag, Node, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
 
 class DatabaseSerializer(serializers.ModelSerializer, SerializerExtensionsMixin):
     paper_count = SerializerMethodField()
@@ -46,24 +46,24 @@ class SampleSerializer(serializers.ModelSerializer):
         model = Sample
         fields = '__all__'
 
-class PolymerNodeSerializer(serializers.ModelSerializer):
+class NodeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PolymerNode
+        model = Node
         fields = '__all__'
 
 
-class PolymerTagSerializer(serializers.ModelSerializer):
+class TagSerializer(serializers.ModelSerializer):
     included_serializers = {
-        'nodes': PolymerNodeSerializer
+        'nodes': NodeSerializer
     }
     class Meta:
-        model = PolymerTag
+        model = Tag
         fields = ('name', 'nodes')
 
-class PolymerTagTreeSerializer(serializers.Serializer):
+class TagTreeSerializer(serializers.Serializer):
     name = serializers.CharField()
     node_id = serializers.CharField()
-    polymer_tag_id = serializers.CharField()
+    tag_id = serializers.CharField()
     parent_node_id = serializers.CharField(required=False)
     tree_level = serializers.IntegerField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')

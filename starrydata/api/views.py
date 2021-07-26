@@ -6,8 +6,8 @@ from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
-from starrydata.models import Database, FabricationProcess, Figure, Paper, PolymerTag, PolymerNode, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
-from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, FabricationProcessSerializer, PolymerTagSerializer, PolymerNodeSerializer, SampleSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer, PolymerTagTreeSerializer
+from starrydata.models import Database, FabricationProcess, Figure, Paper, Tag, Node, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
+from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, FabricationProcessSerializer, TagSerializer, NodeSerializer, SampleSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer, TagTreeSerializer
 
 class DatabaseListView(generics.ListCreateAPIView):
     queryset = Database.objects.all().order_by('id')
@@ -26,35 +26,35 @@ class SampleListView(generics.ListCreateAPIView):
     serializer_class = SampleSerializer
 
 
-class PolymerTagListView(generics.ListCreateAPIView):
-    queryset = PolymerTag.objects.all()
-    serializer_class = PolymerTagSerializer
+class TagListView(generics.ListCreateAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
     search_fields = ['name']
 
-class PolymerTagDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PolymerTag.objects.all()
-    serializer_class = PolymerTagSerializer
+class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
-class PolymerNodeListView(generics.ListCreateAPIView):
-    queryset = PolymerNode.objects.all()
-    serializer_class = PolymerNodeSerializer
+class NodeListView(generics.ListCreateAPIView):
+    queryset = Node.objects.all()
+    serializer_class = NodeSerializer
 
-class PolymerNodeDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PolymerNode.objects.all()
-    serializer_class = PolymerNodeSerializer
+class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Node.objects.all()
+    serializer_class = NodeSerializer
 
-class PolymerTagTreeDetailView(views.APIView):
-    Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
-    Node = TypedDict('Tree', {'name': str, 'node_id': str, 'polymer_tag_id': str, 'parent_node_id': str})
+class TagTreeDetailView(views.APIView):
+    Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
+    Node = TypedDict('Tree', {'name': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
-        nodes = list(PolymerNode.objects.all().annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'polymer_tag_id', 'name'))
+        nodes = list(Node.objects.all().annotate(name=F('tag__name'), node_id=F('id'), tag_id=F('tag_id'), parent_node_id=F('parent_id')).values('node_id', 'parent_node_id', 'tag_id', 'name'))
         try:
-            root = PolymerNode.objects.annotate(name=F('polymer_tag__name'), node_id=F('id'), tag_id=F('polymer_tag_id')).values('node_id', 'polymer_tag_id', 'name').get(pk=pk)
-        except PolymerNode.DoesNotExist:
+            root = Node.objects.annotate(name=F('tag__name'), node_id=F('id'), tag_id=F('tag_id')).values('node_id', 'tag_id', 'name').get(pk=pk)
+        except Node.DoesNotExist:
             raise Http404
 
         tree = self.__generateTree(root, nodes, 0)
-        serializer = PolymerTagTreeSerializer(data=tree)
+        serializer = TagTreeSerializer(data=tree)
         try:
             if not serializer.is_valid():
                 raise ValueError("シリアライズのバリデーションに失敗", serializer.errors)

@@ -32,25 +32,25 @@ class Sample(models.Model):
     def __str__(self) -> str:
         return self.title
 
-class PolymerTag(models.Model):
+class Tag(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self) -> str:
         return self.name
 
-class PolymerNode(models.Model):
-    polymer_tag = models.ForeignKey(PolymerTag, on_delete=models.CASCADE, related_name='nodes')
+class Node(models.Model):
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='nodes')
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.polymer_tag.name
+        return self.tag.name
 
     class Meta:
         # 同じ親に同じタグを付与することはできない
         constraints = [
             models.UniqueConstraint(
-                fields=["polymer_tag", "parent"],
-                name="polymer_tag_unique"
+                fields=["tag", "parent"],
+                name="tag_unique"
             )
         ]
 
