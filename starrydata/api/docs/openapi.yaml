@@ -2644,6 +2644,7 @@ components:
       required:
         - type
         - id
+        - attributes
       additionalProperties: false
       properties:
         type:
