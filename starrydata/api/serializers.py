@@ -1,9 +1,8 @@
-from django.db.models import fields
 from rest_framework.fields import SerializerMethodField
 from rest_framework_recursive.fields import RecursiveField
 from rest_framework_json_api import serializers
 from rest_framework_serializer_extensions.serializers import SerializerExtensionsMixin
-from starrydata.models import Database, FabricationProcess, Figure, Paper, Tag, Node, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
+from starrydata.models import Database, Figure, Paper, Tag, Node, Sample
 
 class DatabaseSerializer(serializers.ModelSerializer, SerializerExtensionsMixin):
     paper_count = SerializerMethodField()
@@ -68,24 +67,3 @@ class TagTreeSerializer(serializers.Serializer):
     parent_node_id = serializers.CharField(required=False)
     tree_level = serializers.IntegerField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')
-
-
-class FabricationProcessSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FabricationProcess
-        fields = '__all__'
-
-class SynthesisMethodTagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SynthesisMethodTag
-        fields = '__all__'
-
-class SynthesisMethodTagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SynthesisMethodTag
-        fields = '__all__'
-
-class SynthesisMethodTagTreeNodeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SynthesisMethodTagTreeNode
-        fields = '__all__'

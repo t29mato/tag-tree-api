@@ -1,13 +1,11 @@
-import json
-from json.decoder import JSONDecodeError
 from typing import Optional, TypedDict
 from rest_framework import generics
 from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
-from starrydata.models import Database, FabricationProcess, Figure, Paper, Tag, Node, Sample, SynthesisMethodTag, SynthesisMethodTagTreeNode
-from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, FabricationProcessSerializer, TagSerializer, NodeSerializer, SampleSerializer, SynthesisMethodTagSerializer, SynthesisMethodTagTreeNodeSerializer, TagTreeSerializer
+from starrydata.models import Database, Figure, Paper, Tag, Node, Sample
+from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer
 
 class DatabaseListView(generics.ListCreateAPIView):
     queryset = Database.objects.all().order_by('id')
@@ -77,28 +75,3 @@ class TagTreeDetailView(views.APIView):
         parent['tree_level'] = tree_level
         parent['children'] = list(map(lambda child: self.__generateTree(child, nodes, tree_level), children))
         return parent
-
-class ListView(generics.ListCreateAPIView):
-    queryset = FabricationProcess.objects.all().order_by('-id')
-    serializer_class = FabricationProcessSerializer
-
-
-class DetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = FabricationProcess.objects.all()
-    serializer_class = FabricationProcessSerializer
-
-class SynthesisMethodTagListView(generics.ListCreateAPIView):
-    queryset = SynthesisMethodTag.objects.all().order_by('-id')
-    serializer_class = SynthesisMethodTagSerializer
-
-class SynthesisMethodTagDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = SynthesisMethodTag.objects.all()
-    serializer_class = SynthesisMethodTagSerializer
-
-class SynthesisMethodTagTreeNodeListView(generics.ListCreateAPIView):
-    queryset = SynthesisMethodTagTreeNode.objects.all().order_by('-id')
-    serializer_class = SynthesisMethodTagTreeNodeSerializer
-
-class SynthesisMethodTagTreeNodeDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = SynthesisMethodTagTreeNode.objects.all()
-    serializer_class = SynthesisMethodTagTreeNodeSerializer

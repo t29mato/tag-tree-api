@@ -17,16 +17,10 @@ api-docs-fix:
 	yq -i eval '.paths./api/papers.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/figures.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/samples.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths./api/fabrication_processes.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths./api/synthesis_method_tags.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths./api/synthesis_method_tag_tree_nodes.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/tags.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/nodes.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 
 	# Add type to PATCH schema
-	yq -i eval '.paths."/api/fabrication_processes/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths."/api/synthesis_method_tags/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths."/api/synthesis_method_tag_tree_nodes/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths."/api/tags/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths."/api/nodes/{id}".patch.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 
