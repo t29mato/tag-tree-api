@@ -27,7 +27,7 @@ class Command(BaseCommand):
 
         rootNode = Node.objects.filter(tag__name_ja=rootName).values('id')
         if not rootNode.exists():
-            node = Node(node=rootNode[0])
+            node = Node(tag=rootTag[0])
             node.save()
             print('ルートノード生成「' + rootName + '」')
 
