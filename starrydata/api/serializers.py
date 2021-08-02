@@ -1,8 +1,9 @@
+from django.db.models import fields
 from rest_framework.fields import SerializerMethodField
 from rest_framework_recursive.fields import RecursiveField
 from rest_framework_json_api import serializers
 from rest_framework_serializer_extensions.serializers import SerializerExtensionsMixin
-from starrydata.models import Database, Figure, Paper, Tag, Node, Sample
+from starrydata.models import Database, Figure, Paper, Tag, Node, Sample, Word
 
 class DatabaseSerializer(serializers.ModelSerializer, SerializerExtensionsMixin):
     paper_count = SerializerMethodField()
@@ -50,14 +51,21 @@ class NodeSerializer(serializers.ModelSerializer):
         model = Node
         fields = '__all__'
 
+class WordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Word
+        fields = ('name', 'language')
 
 class TagSerializer(serializers.ModelSerializer):
     included_serializers = {
-        'nodes': NodeSerializer
+        'nodes': NodeSerializer,
+        'word_ja': WordSerializer,
+        'word_en': WordSerializer,
+        'synonym': WordSerializer
     }
     class Meta:
         model = Tag
-        fields = ('word_ja', 'word_en', 'nodes')
+        fields = ('word_ja', 'word_en', 'nodes', 'synonym')
 
 class TagTreeSerializer(serializers.Serializer):
     name_ja = serializers.CharField(allow_null=True, allow_blank=True)
