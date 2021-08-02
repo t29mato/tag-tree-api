@@ -9,7 +9,7 @@ class Command(BaseCommand):
         for row in f:
             words = Word.objects.filter(name=row["category_name"])
             if not words.exists():
-                word = Word(name=row["category_name"], language='JAPANESE')
+                word = Word(name=row["category_name"], language=Word.Language.JAPANESE)
                 word.save()
                 print('単語追加：「' + row["category_name"] + '」')
             else:
