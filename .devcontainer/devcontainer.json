@@ -28,7 +28,8 @@
 		"eamodio.gitlens",
 		"streetsidesoftware.code-spell-checker",
 		"42crunch.vscode-openapi",
-		"mohsen1.prettify-json"
+		"mohsen1.prettify-json",
+		"xyz.local-history"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
