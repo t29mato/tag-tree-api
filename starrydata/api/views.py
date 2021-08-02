@@ -46,15 +46,15 @@ class TagTreeDetailView(views.APIView):
     Node = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
         nodes = list(Node.objects.all().annotate(
-            name_ja=F('tag__name_ja'),
-            name_en=F('tag__name_en'),
+            name_ja=F('tag__word_ja__name'),
+            name_en=F('tag__word_en__name'),
             node_id=F('id'),
             parent_node_id=F('parent_id')
             ).values('node_id','parent_node_id', 'tag_id', 'name_ja', 'name_en'))
         try:
             root = Node.objects.annotate(
-                name_ja=F('tag__name_ja'),
-                name_en=F('tag__name_en'),
+                name_ja=F('tag__word_ja__name'),
+                name_en=F('tag__word_en__name'),
                 node_id=F('id'),
                 ).values('node_id', 'tag_id', 'name_ja', 'name_en').get(pk=pk)
         except Node.DoesNotExist:
@@ -67,6 +67,7 @@ class TagTreeDetailView(views.APIView):
                 raise ValueError("シリアライズのバリデーションに失敗", serializer.errors)
         except ValueError as e:
             print(e)
+            print('バリデーション失敗')
         return Response(serializer.data, status=200)
 
     def __generateTree(self, parent: Tree, nodes: Node, tree_level: int):

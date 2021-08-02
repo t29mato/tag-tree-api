@@ -57,13 +57,13 @@ class TagSerializer(serializers.ModelSerializer):
     }
     class Meta:
         model = Tag
-        fields = ('name_ja', 'name_en', 'nodes')
+        fields = ('word_ja', 'word_en', 'nodes')
 
 class TagTreeSerializer(serializers.Serializer):
-    name_ja = serializers.CharField()
-    name_en = serializers.CharField()
+    name_ja = serializers.CharField(allow_null=True, allow_blank=True)
+    name_en = serializers.CharField(allow_null=True, allow_blank=True)
     node_id = serializers.CharField()
     tag_id = serializers.CharField()
-    parent_node_id = serializers.CharField(required=False)
+    parent_node_id = serializers.CharField(allow_null=True, required=False)
     tree_level = serializers.IntegerField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')

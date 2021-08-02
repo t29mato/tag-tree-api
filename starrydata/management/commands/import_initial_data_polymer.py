@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from typing import Optional, TypedDict
-from starrydata.models import Tag, Node
+from starrydata.models import Tag, Node, Word
 import requests, re, json
 
 class Command(BaseCommand):
@@ -19,13 +19,19 @@ class Command(BaseCommand):
         # transnoのAPIのレスポンスにspanタグが含まれるため除去
         tree = json.loads(re.sub('</?span>','',r.json()['data']['definition']))['nodes']
 
-        rootTag = Tag.objects.filter(name_ja=rootName)
+        rootWord = Word.objects.filter(name=rootName)
+        if not rootWord.exists():
+            word = Word(name=rootName, language='JAPANESE')
+            word.save()
+            print('ルート単語生成：「' + rootName + '」')
+
+        rootTag = Tag.objects.filter(word_ja__name=rootName)
         if not rootTag.exists():
-            tag = Tag(name_ja=rootName)
+            tag = Tag(word_ja=rootWord[0])
             tag.save()
             print('ルートタグ生成：「' + rootName + '」')
 
-        rootNode = Node.objects.filter(tag__name_ja=rootName).values('id')
+        rootNode = Node.objects.filter(tag__word_ja=rootWord[0]).values('id')
         if not rootNode.exists():
             node = Node(tag=rootTag[0])
             node.save()
@@ -37,7 +43,7 @@ class Command(BaseCommand):
         print('処理開始：「' + tree['text'] + '」')
         parent = Node.objects.get(pk=parent_id)
 
-        tag = Tag.objects.filter(name_ja=tree['text'])
+        tag = Tag.objects.filter(word_ja__name=tree['text'])
 
         if tree['text'] == '':
             print('処理不要：タグ名が付いていないため')
@@ -50,14 +56,17 @@ class Command(BaseCommand):
             else:
                 newNode = Node(tag=tag[0],parent=parent)
                 newNode.save()
-                print('新規ノード生成 - 親：「' + parent.tag.name_ja + '」')
+                print('新規ノード生成 - 親：「' + parent.tag.word_ja.name + '」')
         else:
-            newTag = Tag(name_ja=tree['text'])
+            newWord = Word(name=tree['text'], language='JAPANESE')
+            newWord.save()
+            print('新規単語生成：「' + newWord.name + '」')
+            newTag = Tag(word_ja=newWord)
             newTag.save()
-            print('新規タグ生成：「' + newTag.name_ja + '」')
+            print('新規タグ生成：「' + newTag.word_ja.name + '」')
             newNode = Node(tag=tag[0],parent=parent)
             newNode.save()
-            print('新規ノード生成 - 親：「' + parent.tag.name_ja + '」')
+            print('新規ノード生成 - 親：「' + parent.tag.word_ja.name + '」')
         print('')
 
         node = Node.objects.get(tag=tag[0], parent=parent)

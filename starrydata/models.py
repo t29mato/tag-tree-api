@@ -32,19 +32,34 @@ class Sample(models.Model):
     def __str__(self) -> str:
         return self.title
 
-class Tag(models.Model):
-    name_ja = models.CharField(max_length=255, unique=True)
-    name_en = models.CharField(max_length=255, unique=True, null=True, blank=True)
+
+class Word(models.Model):
+    name = models.CharField(max_length=255)
+    class Language(models.TextChoices):
+        JAPANESE = 'ja'
+        ENGLISH = 'en',
+
+    language = models.CharField(
+        max_length=2,
+        choices=Language.choices
+    )
 
     def __str__(self) -> str:
-        return self.name_ja
+        return self.name
+
+class Tag(models.Model):
+    word_ja = models.ForeignKey(Word, on_delete=models.CASCADE, related_name='words_ja', blank=True, null=True)
+    word_en = models.ForeignKey(Word, on_delete=models.CASCADE, related_name='words_en', blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.word_ja.name
 
 class Node(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='nodes')
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', blank=True, null=True)
 
     def __str__(self) -> str:
-        return self.tag.name_ja
+        return self.tag.word_ja.name
 
     class Meta:
         # 同じ親に同じタグを付与することはできない
@@ -54,3 +69,4 @@ class Node(models.Model):
                 name="tag_unique"
             )
         ]
+
