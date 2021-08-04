@@ -49,7 +49,7 @@ class SampleSerializer(serializers.ModelSerializer):
 class NodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Node
-        fields = '__all__'
+        fields = ('tag', 'parent')
 
 class WordSerializer(serializers.ModelSerializer):
     class Meta:
