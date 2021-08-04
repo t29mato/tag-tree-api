@@ -1417,6 +1417,43 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
+  /api/tag_ancestors/{id}:
+    get:
+      operationId: retrieve/api/tag_ancestors/{id}
+      description: ''
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+      tags:
+        - starrydata
+      responses:
+        '200':
+          description: List/api/tag_ancestors
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TagAncestors'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
 components:
   schemas:
     Database:
@@ -1711,6 +1748,47 @@ components:
             - parent_node_id
             - tree_level
             - children
+    TagAncestors:
+      type: object
+      required:
+        - type
+        - id
+        - attributes
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          required:
+            - ancestors
+          additionalProperties: false
+          properties:
+            ancestors:
+              type: array
+              items:
+                type: object
+                required:
+                  - node_id
+                  - tag_id
+                properties:
+                  name_ja:
+                    type: string
+                  name_en:
+                    type: string
+                  node_id:
+                    type: string
+                  tag_id:
+                    type: string
+                  parent_node_id:
+                    type: string
     failure:
       type: object
       required:

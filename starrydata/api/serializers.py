@@ -75,3 +75,13 @@ class TagTreeSerializer(serializers.Serializer):
     parent_node_id = serializers.CharField(allow_null=True, required=False)
     tree_level = serializers.IntegerField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')
+
+class TagAncestorSerializer(serializers.Serializer):
+    name_ja = serializers.CharField(allow_null=True, allow_blank=True)
+    name_en = serializers.CharField(allow_null=True, allow_blank=True)
+    node_id = serializers.CharField()
+    tag_id = serializers.CharField()
+    parent_node_id = serializers.CharField(allow_null=True, required=False)
+
+class TagAncestorListSerializer(serializers.Serializer):
+    ancestors = serializers.ListField(child=TagAncestorSerializer(), source='ancestors.all')

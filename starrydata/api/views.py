@@ -1,11 +1,11 @@
-from typing import Optional, TypedDict
+from typing import List, Optional, TypedDict
 from rest_framework import generics
 from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
 from starrydata.models import Database, Figure, Paper, Tag, Node, Sample
-from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer
+from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagAncestorListSerializer, TagAncestorSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer
 
 class DatabaseListView(generics.ListCreateAPIView):
     queryset = Database.objects.all().order_by('id')
@@ -70,9 +70,37 @@ class TagTreeDetailView(views.APIView):
             print('バリデーション失敗')
         return Response(serializer.data, status=200)
 
-    def __generateTree(self, parent: Tree, nodes: Node, tree_level: int):
+    def __generateTree(self, parent: Tree, nodes: List[Node], tree_level: int):
         tree_level = tree_level + 1
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
         parent['tree_level'] = tree_level
         parent['children'] = list(map(lambda child: self.__generateTree(child, nodes, tree_level), children))
         return parent
+
+class TagAncestorsView(views.APIView):
+    Node = TypedDict('Node', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
+
+    def get(self, request, pk):
+        ancestors = self.__generateAncestors(pk, [])
+        serializer = TagAncestorListSerializer(data=ancestors)
+        try:
+            if not serializer.is_valid():
+                raise ValueError("シリアライズのバリデーションに失敗", serializer.errors)
+        except ValueError as e:
+            print(e)
+            print('バリデーション失敗')
+        print(serializer.data)
+        return Response(data=serializer.data, status=200)
+
+    def __generateAncestors(self, parent_id: int, ancestors: List[Node] = []):
+        if not parent_id:
+            return {"ancestors": ancestors}
+        else:
+            node = Node.objects.filter(pk=parent_id).annotate(
+                name_ja=F('tag__word_ja__name'),
+                name_en=F('tag__word_en__name'),
+                node_id=F('id'),
+                parent_node_id=F('parent_id')
+                ).values('node_id','parent_node_id', 'tag_id', 'name_ja', 'name_en')[0]
+            ancestors.append(node)
+            return self.__generateAncestors(node['parent_node_id'], ancestors)
