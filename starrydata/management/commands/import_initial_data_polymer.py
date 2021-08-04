@@ -21,7 +21,7 @@ class Command(BaseCommand):
 
         rootWord = Word.objects.filter(name=rootName)
         if not rootWord.exists():
-            word = Word(name=rootName, language='JAPANESE')
+            word = Word(name=rootName, language='jp')
             word.save()
             print('ルート単語生成：「' + rootName + '」')
 
@@ -58,7 +58,7 @@ class Command(BaseCommand):
                 newNode.save()
                 print('新規ノード生成 - 親：「' + parent.tag.word_ja.name + '」')
         else:
-            newWord = Word(name=tree['text'], language='JAPANESE')
+            newWord = Word(name=tree['text'], language='jp')
             newWord.save()
             print('新規単語生成：「' + newWord.name + '」')
             newTag = Tag(word_ja=newWord)
