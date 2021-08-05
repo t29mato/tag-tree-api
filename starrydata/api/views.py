@@ -27,7 +27,7 @@ class SampleListView(generics.ListCreateAPIView):
 class TagListView(generics.ListCreateAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-    search_fields = ['name_ja', 'name_en']
+    search_fields = ['word_ja__name', 'word_en__name']
 
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tag.objects.all()
