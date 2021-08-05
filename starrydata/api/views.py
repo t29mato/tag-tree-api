@@ -4,8 +4,8 @@ from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
-from starrydata.models import Database, Figure, Paper, Tag, Node, Sample
-from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagAncestorListSerializer, TagAncestorSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer
+from starrydata.models import Database, Figure, Paper, Tag, Node, Sample, Word
+from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagAncestorListSerializer, TagAncestorSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer, WordSerializer
 
 class DatabaseListView(generics.ListCreateAPIView):
     queryset = Database.objects.all().order_by('id')
