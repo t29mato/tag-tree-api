@@ -25,20 +25,20 @@ class SampleListView(generics.ListCreateAPIView):
 
 
 class TagListView(generics.ListCreateAPIView):
-    queryset = Tag.objects.all()
+    queryset = Tag.objects.select_related('word_ja', 'word_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
     serializer_class = TagSerializer
     search_fields = ['word_ja__name', 'word_en__name']
 
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Tag.objects.all()
+    queryset = Tag.objects.select_related('word_ja', 'word_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
     serializer_class = TagSerializer
 
 class NodeListView(generics.ListCreateAPIView):
-    queryset = Node.objects.all()
+    queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
 
 class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Node.objects.all()
+    queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
 
 class TagTreeDetailView(views.APIView):
