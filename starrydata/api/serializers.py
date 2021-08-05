@@ -61,11 +61,11 @@ class TagSerializer(serializers.ModelSerializer):
         'nodes': NodeSerializer,
         'word_ja': WordSerializer,
         'word_en': WordSerializer,
-        'synonym': WordSerializer
+        'synonyms': WordSerializer
     }
     class Meta:
         model = Tag
-        fields = ('word_ja', 'word_en', 'nodes', 'synonym')
+        fields = ('word_ja', 'word_en', 'nodes', 'synonyms')
 
 class TagTreeSerializer(serializers.Serializer):
     name_ja = serializers.CharField(allow_null=True, allow_blank=True)

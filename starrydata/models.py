@@ -34,7 +34,7 @@ class Sample(models.Model):
 
 
 class Word(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, db_index=True)
     class Language(models.TextChoices):
         JAPANESE = 'ja'
         ENGLISH = 'en',
@@ -50,7 +50,7 @@ class Word(models.Model):
 class Tag(models.Model):
     word_ja = models.ForeignKey(Word, on_delete=models.PROTECT, related_name='tags_ja', blank=True, null=True)
     word_en = models.ForeignKey(Word, on_delete=models.PROTECT, related_name='tags_en', blank=True, null=True)
-    synonym = models.ManyToManyField(Word, related_name='tags_synonym')
+    synonyms = models.ManyToManyField(Word, related_name='tags_synonyms')
 
     def __str__(self) -> str:
         name = '名前なし'
