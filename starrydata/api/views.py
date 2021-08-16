@@ -4,8 +4,8 @@ from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
-from starrydata.models import Database, Figure, Paper, Tag, Node, Sample, Word
-from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagAncestorListSerializer, TagAncestorSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer, WordSerializer
+from starrydata.models import Database, Figure, Paper, Tag, Node, Sample, Term
+from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagAncestorListSerializer, TagAncestorSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer, TermSerializer
 
 class DatabaseListView(generics.ListCreateAPIView):
     queryset = Database.objects.all().order_by('id')
@@ -25,12 +25,12 @@ class SampleListView(generics.ListCreateAPIView):
 
 
 class TagListView(generics.ListCreateAPIView):
-    queryset = Tag.objects.select_related('word_ja', 'word_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
+    queryset = Tag.objects.select_related('term_ja', 'term_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
     serializer_class = TagSerializer
-    search_fields = ['word_ja__name', 'word_en__name']
+    search_fields = ['term_ja__name', 'term_en__name']
 
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Tag.objects.select_related('word_ja', 'word_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
+    queryset = Tag.objects.select_related('term_ja', 'term_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
     serializer_class = TagSerializer
 
 class NodeListView(generics.ListCreateAPIView):
@@ -46,15 +46,15 @@ class TagTreeDetailView(views.APIView):
     Node = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
         nodes = list(Node.objects.all().annotate(
-            name_ja=F('tag__word_ja__name'),
-            name_en=F('tag__word_en__name'),
+            name_ja=F('tag__term_ja__name'),
+            name_en=F('tag__term_en__name'),
             node_id=F('id'),
             parent_node_id=F('parent_id')
             ).values('node_id','parent_node_id', 'tag_id', 'name_ja', 'name_en'))
         try:
             root = Node.objects.annotate(
-                name_ja=F('tag__word_ja__name'),
-                name_en=F('tag__word_en__name'),
+                name_ja=F('tag__term_ja__name'),
+                name_en=F('tag__term_en__name'),
                 node_id=F('id'),
                 ).values('node_id', 'tag_id', 'name_ja', 'name_en').get(pk=pk)
         except Node.DoesNotExist:
@@ -97,8 +97,8 @@ class TagAncestorsView(views.APIView):
             return {"ancestors": ancestors}
         else:
             node = Node.objects.filter(pk=parent_id).annotate(
-                name_ja=F('tag__word_ja__name'),
-                name_en=F('tag__word_en__name'),
+                name_ja=F('tag__term_ja__name'),
+                name_en=F('tag__term_en__name'),
                 node_id=F('id'),
                 parent_node_id=F('parent_id')
                 ).values('node_id','parent_node_id', 'tag_id', 'name_ja', 'name_en')[0]
