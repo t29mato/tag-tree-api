@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Import Initial Data to Database'
 
     def handle(self, *args, **options):
-        payload = {'docId': 'nRDcYKPtj-'}
+        payload = {'docId': '75J-H9XrbUe'}
         headers = {
             'Jwt-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJ0cmFuc25vIiwic3ViIjoiMTA4MjU0MDkiLCJsb2dpblR5cGUiOiJlbWFpbCIsImV4cCI6MTYyNjU4MzQ2OCwiaWF0IjoxNjIzOTkxNDY4fQ.ErmJOBrQ22yfgpyMgzMNU4OX-IjOGwzMsWlFb_Nu4PfL9A9KNKD0nMP0dStq5reX7e5PcxJrLTxUcKJ4ID1djw',
             'Content-Type': 'application/json;charset=UTF-8',
