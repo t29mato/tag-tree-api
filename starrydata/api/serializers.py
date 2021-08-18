@@ -57,15 +57,23 @@ class TermSerializer(serializers.ModelSerializer):
         fields = ('name', 'language')
 
 class TagSerializer(serializers.ModelSerializer):
+    term_ja = TermSerializer(read_only=True)
+    term_ja_id = serializers.PrimaryKeyRelatedField(
+        queryset=Term.objects.filter(), source='term_ja', write_only=True, required=False
+    )
+    term_en = TermSerializer(read_only=True)
+    term_en_id = serializers.PrimaryKeyRelatedField(
+        queryset=Term.objects.filter(), source='term_ja', write_only=True, required=False
+    )
+    # TODO: nodesをattributesのままで良いか。言葉の意味的にはrelationshipの方が正しく感じる。
+    nodes = NodeSerializer(many=True, required=False)
     included_serializers = {
         'nodes': NodeSerializer,
-        'term_ja': TermSerializer,
-        'term_en': TermSerializer,
         'synonyms': TermSerializer
     }
     class Meta:
         model = Tag
-        fields = ('term_ja', 'term_en', 'nodes', 'synonyms')
+        fields = ('term_ja', 'term_en', 'nodes', 'synonyms', 'term_ja_id', 'term_en_id')
 
 class TagTreeSerializer(serializers.Serializer):
     name_ja = serializers.CharField(allow_null=True, allow_blank=True)

@@ -895,6 +895,11 @@ paths:
                       - $ref: '#/components/schemas/pagination'
                   meta:
                     $ref: '#/components/schemas/meta'
+                  included:
+                    type: array
+                    # uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
         '401':
           description: not authorized
           content:
@@ -917,6 +922,7 @@ paths:
         content:
           application/vnd.api+json:
             schema:
+              type: object
               required:
                 - data
               properties:
@@ -938,15 +944,10 @@ paths:
                     attributes:
                       type: object
                       properties:
-                        name_ja:
+                        term_ja_id:
                           type: string
-                          maxLength: 255
-                        name_en:
+                        term_en_id:
                           type: string
-                          maxLength: 255
-                      required:
-                        - name_ja
-              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -1821,18 +1822,24 @@ components:
               $ref: '#/components/schemas/link'
         attributes:
           type: object
-          properties:
-            id:
-              type: integer
-              readOnly: true
-            name_ja:
-                  type: string
-              maxLength: 255
-            name_en:
-                  type: string
-              maxLength: 255
           required:
-            - name_ja
+            - term_ja
+            - term_en
+          properties:
+            term_ja:
+              type: object
+              properties:
+                name:
+                  type: string
+                language:
+                  type: string
+            term_en:
+              type: object
+              properties:
+                name:
+                  type: string
+                language:
+                  type: string
         relationships:
           type: object
           required:

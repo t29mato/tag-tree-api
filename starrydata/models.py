@@ -50,23 +50,23 @@ class Term(models.Model):
 class Tag(models.Model):
     term_ja = models.ForeignKey(Term, on_delete=models.PROTECT, related_name='tags_ja', blank=True, null=True)
     term_en = models.ForeignKey(Term, on_delete=models.PROTECT, related_name='tags_en', blank=True, null=True)
-    synonyms = models.ManyToManyField(Term, related_name='tags_synonyms')
+    synonyms = models.ManyToManyField(Term, related_name='tags_synonyms', blank=True)
 
-    def __str__(self) -> str:
-        name = '名前なし'
-        if self.term_ja.name:
-            name = self.term_ja.name
-        return name
+    # def __str__(self) -> str:
+    #     name = '名前なし'
+    #     if self.term_ja.name:
+    #         name = self.term_ja.name
+    #     return name
 
 class Node(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='nodes')
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', blank=True, null=True)
 
-    def __str__(self) -> str:
-        name = '名前なし'
-        if self.tag.term_ja.name:
-            name = self.tag.term_ja.name
-        return name
+    # def __str__(self) -> str:
+    #     name = '名前なし'
+    #     if self.tag.term_ja.name:
+    #         name = self.tag.term_ja.name
+    #     return name
 
     class Meta:
         # 同じ親に同じタグを付与することはできない
