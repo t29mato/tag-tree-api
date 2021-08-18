@@ -163,6 +163,168 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
+  /api/terms:
+    get:
+      operationId: List/api/terms
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - starrydata
+      responses:
+        '200':
+          description: List/api/terms
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Term'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    post:
+      operationId: create/api/terms
+      description: ''
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        language:
+                          type: string
+                      required:
+                        - name
+                        - language
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Term'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
   /api/papers:
     get:
       operationId: List/api/papers
@@ -1492,6 +1654,33 @@ components:
               maxLength: 100
           required:
             - name
+    Term:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              maxLength: 100
+            language:
+              type: string
+          required:
+            - name
+            - language
     Paper:
       type: object
       required:
@@ -1637,10 +1826,10 @@ components:
               type: integer
               readOnly: true
             name_ja:
-              type: string
+                  type: string
               maxLength: 255
             name_en:
-              type: string
+                  type: string
               maxLength: 255
           required:
             - name_ja

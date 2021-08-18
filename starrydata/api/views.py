@@ -37,6 +37,10 @@ class NodeListView(generics.ListCreateAPIView):
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
 
+class TermListView(generics.ListCreateAPIView):
+    queryset = Term.objects.all().order_by('id')
+    serializer_class = TermSerializer
+
 class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
