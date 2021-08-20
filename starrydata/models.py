@@ -34,7 +34,7 @@ class Sample(models.Model):
 
 
 class Term(models.Model):
-    name = models.CharField(max_length=255, db_index=True)
+    name = models.CharField(max_length=255, db_index=True, unique=True)
     class Language(models.TextChoices):
         JAPANESE = 'ja'
         ENGLISH = 'en',
