@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 from typing import Optional, TypedDict
 from starrydata.models import Tag, Node, Term
 import requests, re, json
@@ -7,8 +7,11 @@ class Command(BaseCommand):
     Tree = TypedDict('Tree', {'id': str, 'modified': int, 'text': str, 'children': Optional[list['Tree']]})
     help = 'Import Initial Data to Database'
 
+    def add_arguments(self, parser: CommandParser) -> None:
+        parser.add_argument('--docId', type=str)
+
     def handle(self, *args, **options):
-        payload = {'docId': '75J-H9XrbUe'}
+        payload = {'docId': options['docId']}
         headers = {
             'Jwt-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhcHAiOiJ0cmFuc25vIiwic3ViIjoiMTA4MjU0MDkiLCJsb2dpblR5cGUiOiJlbWFpbCIsImV4cCI6MTYyNjU4MzQ2OCwiaWF0IjoxNjIzOTkxNDY4fQ.ErmJOBrQ22yfgpyMgzMNU4OX-IjOGwzMsWlFb_Nu4PfL9A9KNKD0nMP0dStq5reX7e5PcxJrLTxUcKJ4ID1djw',
             'Content-Type': 'application/json;charset=UTF-8',
