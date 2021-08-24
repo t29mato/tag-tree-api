@@ -930,6 +930,8 @@ paths:
                   type: object
                   required:
                     - type
+                    - attributes
+                    - relationships
                   additionalProperties: false
                   properties:
                     type:
@@ -948,6 +950,23 @@ paths:
                           type: string
                         term_en_id:
                           type: string
+                    relationships:
+                      type: object
+                      required:
+                        - nodes
+                      properties:
+                        nodes:
+                          type: object
+                          required:
+                            - data
+                          properties:
+                            data:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                id:
+                                  type: string
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
