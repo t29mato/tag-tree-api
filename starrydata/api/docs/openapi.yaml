@@ -946,27 +946,38 @@ paths:
                     attributes:
                       type: object
                       properties:
-                        term_ja_id:
-                          type: string
-                        term_en_id:
-                          type: string
-                    relationships:
-                      type: object
-                      required:
-                        - nodes
-                      properties:
-                        nodes:
+                        term_ja:
                           type: object
                           required:
-                            - data
+                            - name
+                            - language
                           properties:
-                            data:
-                              type: object
-                              properties:
-                                type:
-                                  type: string
-                                id:
-                                  type: string
+                            name:
+                              type: string
+                            language:
+                              type: string
+                        term_en:
+                          type: object
+                          required:
+                            - name
+                            - language
+                          properties:
+                            name:
+                              type: string
+                            language:
+                              type: string
+                        synonyms:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                              - name
+                              - language
+                            properties:
+                              name:
+                                type: string
+                              language:
+                                type: string
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -1106,10 +1117,38 @@ paths:
                     attributes:
                       type: object
                       properties:
-                        name_ja:
-                          type: string
-                        name_en:
-                          type: string
+                        term_ja:
+                          type: object
+                          required:
+                            - name
+                            - language
+                          properties:
+                            name:
+                              type: string
+                            language:
+                              type: string
+                        term_en:
+                          type: object
+                          required:
+                            - name
+                            - language
+                          properties:
+                            name:
+                              type: string
+                            language:
+                              type: string
+                        synonyms:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                              - name
+                              - language
+                            properties:
+                              name:
+                                type: string
+                              language:
+                                type: string
       responses:
         '200':
           description: partialUpdate/api/tags/{id}
@@ -1679,6 +1718,7 @@ components:
       required:
         - type
         - id
+        - attributes
       additionalProperties: false
       properties:
         type:
@@ -1828,6 +1868,7 @@ components:
         - type
         - id
         - attributes
+        - relationships
       additionalProperties: false
       properties:
         type:
@@ -1844,6 +1885,7 @@ components:
           required:
             - term_ja
             - term_en
+            - synonyms
           properties:
             term_ja:
               type: object
@@ -1859,12 +1901,82 @@ components:
                   type: string
                 language:
                   type: string
+            synonyms:
+              type: array
+              items:
+                type: object
+                required:
+                  - name
+                  - language
+                properties:
+                  name:
+                    type: string
+                  language:
+                    type: string
         relationships:
           type: object
           required:
             - nodes
+            - term_ja_id
+            - term_en_id
+            - synonyms_ids
           properties:
             nodes:
+              type: object
+              required:
+                - meta
+                - data
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - count
+                  properties:
+                    count:
+                      type: number
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - type
+                      - id
+                    properties:
+                      type:
+                        $ref: '#/components/schemas/type'
+                      id:
+                        $ref: '#/components/schemas/id'
+            term_ja_id:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+            term_en_id:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+            synonyms_ids:
               type: object
               required:
                 - meta

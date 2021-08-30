@@ -55,25 +55,82 @@ class TermSerializer(serializers.ModelSerializer):
     class Meta:
         model = Term
         fields = ('name', 'language')
+        extra_kwargs = {
+            'name': {
+                'validators': []
+            }
+        }
 
 class TagSerializer(serializers.ModelSerializer):
-    term_ja = TermSerializer(read_only=True)
+    term_ja = TermSerializer(required=False)
     term_ja_id = serializers.PrimaryKeyRelatedField(
-        queryset=Term.objects.filter(), source='term_ja', write_only=True, required=False
+        source='term_ja', required=False, read_only=True
     )
-    term_en = TermSerializer(read_only=True)
+    term_en = TermSerializer(required=False)
     term_en_id = serializers.PrimaryKeyRelatedField(
-        queryset=Term.objects.filter(), source='term_ja', write_only=True, required=False
+        source='term_en', required=False, read_only=True
     )
-    # TODO: nodesをattributesのままで良いか。言葉の意味的にはrelationshipの方が正しく感じる。
-    nodes = NodeSerializer(many=True, required=False)
-    included_serializers = {
-        'nodes': NodeSerializer,
-        'synonyms': TermSerializer
-    }
+    synonyms = TermSerializer(many=True, required=False)
+    synonyms_ids = serializers.PrimaryKeyRelatedField(
+        source='synonyms', required=False, many=True,read_only=True
+    )
+    nodes = NodeSerializer(many=True, required=False, read_only=True)
+    nodes_ids = serializers.PrimaryKeyRelatedField(
+        source='nodes', required=False, many=True, read_only=True
+    )
+
+    def create(self, validated_data):
+        term_ja_data = validated_data.get('term_ja')
+        if term_ja_data:
+            term_ja, created = Term.objects.get_or_create(name=term_ja_data['name'])
+
+        term_en_data = validated_data.get('term_en')
+        if term_en_data:
+            term_en, created = Term.objects.get_or_create(name=term_en_data['name'])
+
+        synonyms = []
+        if validated_data.get('synonyms'):
+            for term_data in validated_data.get('synonyms'):
+                synonym, created = Term.objects.get_or_create(name=term_data['name'])
+                synonyms.append(synonym)
+
+        if term_ja_data:
+            if term_en_data:
+                tag = Tag.objects.create(term_ja=term_ja, term_en=term_en)
+            else:
+                tag = Tag.objects.create(term_ja=term_ja)
+        else:
+            if term_en_data:
+                tag = Tag.objects.create(term_en=term_en)
+            else:
+                raise ValueError("タグの用語は日英どちらか１つは必須です。")
+
+        tag.synonyms.set(synonyms)
+        return tag
+
+    def update(self, instance, validated_data):
+        term_ja_data = validated_data.get('term_ja')
+        if term_ja_data:
+            term_ja, created = Term.objects.get_or_create(name=term_ja_data['name'])
+            instance.term_ja = term_ja
+
+        term_en_data = validated_data.get('term_en')
+        if term_en_data:
+            term_en, created = Term.objects.get_or_create(name=term_en_data['name'])
+            instance.term_en = term_en
+
+        synonyms = []
+        if validated_data.get('synonyms'):
+            for term_data in validated_data.get('synonyms'):
+                synonym, created = Term.objects.get_or_create(name=term_data['name'], language=term_data['language'])
+                synonyms.append(synonym)
+            instance.synonyms.set(synonyms)
+
+        return instance
+
     class Meta:
         model = Tag
-        fields = ('term_ja', 'term_en', 'nodes', 'synonyms', 'term_ja_id', 'term_en_id')
+        fields = ('term_ja', 'term_en', 'nodes', 'synonyms', 'term_ja_id', 'term_en_id', 'synonyms_ids', 'nodes_ids')
 
 class TagTreeSerializer(serializers.Serializer):
     name_ja = serializers.CharField(allow_null=True, allow_blank=True)
