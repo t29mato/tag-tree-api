@@ -111,12 +111,12 @@ class TagSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         term_ja_data = validated_data.get('term_ja')
         if term_ja_data:
-            term_ja, created = Term.objects.get_or_create(name=term_ja_data['name'])
+            term_ja, created = Term.objects.get_or_create(name=term_ja_data['name'], language=term_ja_data['language'])
             instance.term_ja = term_ja
 
         term_en_data = validated_data.get('term_en')
         if term_en_data:
-            term_en, created = Term.objects.get_or_create(name=term_en_data['name'])
+            term_en, created = Term.objects.get_or_create(name=term_en_data['name'], language=term_en_data['language'])
             instance.term_en = term_en
 
         synonyms = []
@@ -126,6 +126,7 @@ class TagSerializer(serializers.ModelSerializer):
                 synonyms.append(synonym)
             instance.synonyms.set(synonyms)
 
+        instance.save()
         return instance
 
     class Meta:
