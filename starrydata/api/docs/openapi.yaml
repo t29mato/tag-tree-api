@@ -2070,6 +2070,7 @@ components:
                 $ref: '#/components/schemas/TagTreeAttributes'
           required:
             - name_ja
+            - name_en
             - node_id
             - tag_id
             - parent_node_id
