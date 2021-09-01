@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import constraints
 
 class Database(models.Model):
     name = models.CharField(max_length=100)
@@ -34,7 +35,7 @@ class Sample(models.Model):
 
 
 class Term(models.Model):
-    name = models.CharField(max_length=255, db_index=True, unique=True)
+    name = models.CharField(max_length=255, db_index=True)
     class Language(models.TextChoices):
         JAPANESE = 'ja'
         ENGLISH = 'en',
@@ -46,6 +47,13 @@ class Term(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["name", "language"],
+                name="term_unique"
+            )
+        ]
 
 class Tag(models.Model):
     term_ja = models.ForeignKey(Term, on_delete=models.PROTECT, related_name='tags_ja', blank=True, null=True)
