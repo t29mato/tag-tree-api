@@ -1,4 +1,6 @@
 from django.core.management.base import BaseCommand
+from django.core.management.color import no_style
+from django.db import connection
 from starrydata.models import Tag, Node, Term
 import csv
 
@@ -39,3 +41,10 @@ class Command(BaseCommand):
             else:
                 print('ノード追加なし')
             print()
+
+        print('node tableのsequenceのresetを開始')
+        sequence_sql = connection.ops.sequence_reset_sql(no_style(), [Node])
+        with connection.cursor() as cursor:
+            for sql in sequence_sql:
+                cursor.execute(sql)
+        print('node tableのsequenceのresetを終了')
