@@ -2064,6 +2064,14 @@ components:
               type: string
             tree_level:
               type: number
+            synonyms_ja:
+              type: array
+              items:
+                type: string
+            synonyms_en:
+              type: array
+              items:
+                type: string
             children:
               type: array
               items:
@@ -2075,6 +2083,8 @@ components:
             - tag_id
             - parent_node_id
             - tree_level
+            - synonyms_ja
+            - synonyms_en
             - children
     TagAncestors:
       type: object

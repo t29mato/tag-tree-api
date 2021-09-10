@@ -47,7 +47,7 @@ class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = NodeSerializer
 
 class TagTreeDetailView(views.APIView):
-    Tree = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
+    Tree = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'synonyms_ja': Optional[list[str]], 'synonyms_en': Optional[list[str]], 'children': Optional[list['Tree']]})
     Node = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
         nodes = list(Node.objects.all().annotate(
@@ -78,6 +78,9 @@ class TagTreeDetailView(views.APIView):
     def __generateTree(self, parent: Tree, nodes: List[Node], tree_level: int):
         tree_level = tree_level + 1
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
+        synonyms = Tag.objects.get(id=parent['tag_id']).synonyms.all()
+        parent['synonyms_ja'] = list(map(lambda term: term.name, synonyms.filter(language='ja')))
+        parent['synonyms_en'] = list(map(lambda term: term.name, synonyms.filter(language='en')))
         parent['tree_level'] = tree_level
         parent['children'] = list(map(lambda child: self.__generateTree(child, nodes, tree_level), children))
         return parent

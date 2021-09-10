@@ -1,5 +1,5 @@
 from django.db.models import fields
-from rest_framework.fields import SerializerMethodField
+from rest_framework.fields import CharField, SerializerMethodField
 from rest_framework_recursive.fields import RecursiveField
 from rest_framework_json_api import serializers
 from rest_framework_serializer_extensions.serializers import SerializerExtensionsMixin
@@ -138,6 +138,8 @@ class TagTreeSerializer(serializers.Serializer):
     name_en = serializers.CharField(allow_null=True, allow_blank=True)
     node_id = serializers.CharField()
     tag_id = serializers.CharField()
+    synonyms_ja = serializers.ListField(child=CharField(), source='synonyms_ja.all')
+    synonyms_en = serializers.ListField(child=CharField(), source='synonyms_en.all')
     parent_node_id = serializers.CharField(allow_null=True, required=False)
     tree_level = serializers.IntegerField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')
