@@ -96,12 +96,12 @@ class TagSerializer(serializers.ModelSerializer):
 
         if term_ja_data:
             if term_en_data:
-                tag = Tag.objects.create(term_ja=term_ja, term_en=term_en)
+                tag, created = Tag.objects.get_or_create(term_ja=term_ja, term_en=term_en)
             else:
-                tag = Tag.objects.create(term_ja=term_ja)
+                tag, created = Tag.objects.get_or_create(term_ja=term_ja)
         else:
             if term_en_data:
-                tag = Tag.objects.create(term_en=term_en)
+                tag, created = Tag.objects.get_or_create(term_en=term_en)
             else:
                 raise ValueError("タグの用語は日英どちらか１つは必須です。")
 
