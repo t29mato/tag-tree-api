@@ -1,38 +1,4 @@
 from django.db import models
-from django.db.models import constraints
-
-class Database(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self) -> str:
-        return self.name
-
-class Paper(models.Model):
-    title = models.CharField(max_length=1000)
-    authors = models.CharField(max_length=1000)
-    identifier = models.CharField(max_length=32)
-    DOI = models.CharField(max_length=32)
-    container_title = models.CharField(max_length=1000, blank=True, null=True)
-    publisher = models.CharField(max_length=1000, default='')
-    database = models.ManyToManyField(Database)
-
-    def __str__(self) -> str:
-        return self.title
-
-class Figure(models.Model):
-    title = models.CharField(max_length=100)
-    paper = models.ManyToManyField(Paper)
-
-    def __str__(self) -> str:
-        return self.title
-
-class Sample(models.Model):
-    name = models.CharField(max_length=100)
-    paper = models.ManyToManyField(Paper)
-
-    def __str__(self) -> str:
-        return self.title
-
 
 class Term(models.Model):
     name = models.CharField(max_length=255, db_index=True)

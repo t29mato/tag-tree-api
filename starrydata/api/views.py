@@ -4,25 +4,8 @@ from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
-from starrydata.models import Database, Figure, Paper, Tag, Node, Sample, Term
-from starrydata.api.serializers import DatabaseSerializer, FigureSerializer, PaperSerializer, TagAncestorListSerializer, TagAncestorSerializer, TagSerializer, NodeSerializer, SampleSerializer, TagTreeSerializer, TermSerializer
-
-class DatabaseListView(generics.ListCreateAPIView):
-    queryset = Database.objects.all().order_by('id')
-    serializer_class = DatabaseSerializer
-
-class PaperListView(generics.ListCreateAPIView):
-    queryset = Paper.objects.all().order_by('id')
-    serializer_class = PaperSerializer
-
-class FigureListView(generics.ListCreateAPIView):
-    queryset = Figure.objects.all().order_by('id')
-    serializer_class = FigureSerializer
-
-class SampleListView(generics.ListCreateAPIView):
-    queryset = Sample.objects.all().order_by('id')
-    serializer_class = SampleSerializer
-
+from starrydata.models import Tag, Node, Term
+from starrydata.api.serializers import TagAncestorListSerializer, TagSerializer, NodeSerializer, TagTreeSerializer, TermSerializer
 
 class TagListView(generics.ListCreateAPIView):
     queryset = Tag.objects.select_related('term_ja', 'term_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
