@@ -21,4 +21,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('starrydata.api.urls'))
 ]
-urlpatterns += [url(r'^silk/', include('silk.urls', namespace='silk'))]
