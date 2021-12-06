@@ -4,26 +4,21 @@ from rest_framework import views
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
-from starrydata.models import Tag, Node, Term
-from starrydata.api.serializers import TagAncestorListSerializer, TagSerializer, NodeSerializer, TagTreeSerializer, TermSerializer
+from starrydata.models import Tag, Node
+from starrydata.api.serializers import TagAncestorListSerializer, TagSerializer, NodeSerializer, TagTreeSerializer
 
 class TagListView(generics.ListCreateAPIView):
-    queryset = Tag.objects.select_related('term_ja', 'term_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
+    queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
-    search_fields = ['term_ja__name', 'term_en__name']
+    search_fields = ['name']
 
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Tag.objects.select_related('term_ja', 'term_en').prefetch_related('synonyms', 'nodes').all().order_by('id')
+    queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
 
 class NodeListView(generics.ListCreateAPIView):
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
-
-class TermListView(generics.ListCreateAPIView):
-    queryset = Term.objects.all().order_by('id')
-    serializer_class = TermSerializer
-    search_fields = ['name']
 
 class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
@@ -59,6 +54,8 @@ class TagTreeDetailView(views.APIView):
         return Response(serializer.data, status=200)
 
     def __generateTree(self, parent: Tree, nodes: List[Node], tree_level: int):
+        # if tree_level == 1:
+        #     return parent
         tree_level = tree_level + 1
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
         synonyms = Tag.objects.get(id=parent['tag_id']).synonyms.all()

@@ -1,53 +1,12 @@
 from django.db import models
 
-class Term(models.Model):
-    name = models.CharField(max_length=255, db_index=True)
-    class Language(models.TextChoices):
-        JAPANESE = 'ja'
-        ENGLISH = 'en',
-
-    language = models.CharField(
-        max_length=2,
-        choices=Language.choices
-    )
-
-    def __str__(self) -> str:
-        return self.name
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=["name", "language"],
-                name="term_unique"
-            )
-        ]
-
 class Tag(models.Model):
-    term_ja = models.ForeignKey(Term, on_delete=models.PROTECT, related_name='tags_ja', blank=True, null=True)
-    term_en = models.ForeignKey(Term, on_delete=models.PROTECT, related_name='tags_en', blank=True, null=True)
-    synonyms = models.ManyToManyField(Term, related_name='tags_synonyms', blank=True)
+    name = models.CharField(max_length=255, unique=True)
 
-    # def __str__(self) -> str:
-    #     name = '名前なし'
-    #     if self.term_ja.name:
-    #         name = self.term_ja.name
-    #     return name
+class TagMemo(models.Model):
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    memo = models.TextField()
 
 class Node(models.Model):
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='nodes')
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', blank=True, null=True)
-
-    # def __str__(self) -> str:
-    #     name = '名前なし'
-    #     if self.tag.term_ja.name:
-    #         name = self.tag.term_ja.name
-    #     return name
-
-    class Meta:
-        # 同じ親に同じタグを付与することはできない
-        constraints = [
-            models.UniqueConstraint(
-                fields=["tag", "parent"],
-                name="tag_unique"
-            )
-        ]
-
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
