@@ -4,6 +4,7 @@ from django.db import connection
 from starrydata.models import Tag, Node, Term
 import csv
 
+# FIX: model変更したので
 class Command(BaseCommand):
     def handle(self, *args, **options):
         csv_file = open("starrydata/management/commands/fish-tree.csv", "r", encoding="UTF-8", errors="", newline="")

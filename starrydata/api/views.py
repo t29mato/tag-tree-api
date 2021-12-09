@@ -1,6 +1,5 @@
 from typing import List, Optional, TypedDict
-from rest_framework import generics
-from rest_framework import views
+from rest_framework import generics, views, permissions
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
@@ -11,35 +10,60 @@ class TagListView(generics.ListCreateAPIView):
     queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
     search_fields = ['name']
+    def get_permissions(self):
+        self.permission_classes = {
+            'POST': [permissions.IsAuthenticated]
+        }.get(self.request.method, [])
+        return super(TagListView, self).get_permissions()
 
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
+    def get_permissions(self):
+        self.permission_classes = {
+            'POST': [permissions.IsAuthenticated],
+            'PUT': [permissions.IsAuthenticated],
+            'PATCH': [permissions.IsAuthenticated],
+            'DELETE': [permissions.IsAuthenticated]
+        }.get(self.request.method, [])
+        return super(TagDetailView, self).get_permissions()
+
 
 class NodeListView(generics.ListCreateAPIView):
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
+    def get_permissions(self):
+        self.permission_classes = {
+            'POST': [permissions.IsAuthenticated]
+        }.get(self.request.method, [])
+        return super(TagListView, self).get_permissions()
 
 class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
+    def get_permissions(self):
+        self.permission_classes = {
+            'POST': [permissions.IsAuthenticated],
+            'PUT': [permissions.IsAuthenticated],
+            'PATCH': [permissions.IsAuthenticated],
+            'DELETE': [permissions.IsAuthenticated]
+        }.get(self.request.method, [])
+        return super(TagDetailView, self).get_permissions()
 
 class TagTreeDetailView(views.APIView):
-    Tree = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'synonyms_ja': Optional[list[str]], 'synonyms_en': Optional[list[str]], 'children': Optional[list['Tree']]})
-    Node = TypedDict('Tree', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
+    Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
+    Node = TypedDict('Tree', {'name': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
     def get(self, request, pk):
         nodes = list(Node.objects.all().annotate(
-            name_ja=F('tag__term_ja__name'),
-            name_en=F('tag__term_en__name'),
+            name=F('tag__name'),
             node_id=F('id'),
             parent_node_id=F('parent_id')
-            ).values('node_id','parent_node_id', 'tag_id', 'name_ja', 'name_en'))
+            ).values('node_id','parent_node_id', 'tag_id', 'name'))
         try:
             root = Node.objects.annotate(
-                name_ja=F('tag__term_ja__name'),
-                name_en=F('tag__term_en__name'),
+                name=F('tag__name'),
                 node_id=F('id'),
-                ).values('node_id', 'tag_id', 'name_ja', 'name_en').get(pk=pk)
+                ).values('node_id', 'tag_id', 'name').get(pk=pk)
         except Node.DoesNotExist:
             raise Http404
 
@@ -58,9 +82,6 @@ class TagTreeDetailView(views.APIView):
         #     return parent
         tree_level = tree_level + 1
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
-        synonyms = Tag.objects.get(id=parent['tag_id']).synonyms.all()
-        parent['synonyms_ja'] = list(map(lambda term: term.name, synonyms.filter(language='ja')))
-        parent['synonyms_en'] = list(map(lambda term: term.name, synonyms.filter(language='en')))
         parent['tree_level'] = tree_level
         parent['children'] = list(map(lambda child: self.__generateTree(child, nodes, tree_level), children))
         return parent

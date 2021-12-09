@@ -3,6 +3,7 @@ from typing import Optional, TypedDict
 from starrydata.models import Tag, Node, Term
 import requests, re, json
 
+# FIX: モデル変更したので修正する必要あり
 class Command(BaseCommand):
     Tree = TypedDict('Tree', {'id': str, 'modified': int, 'text': str, 'children': Optional[list['Tree']]})
     help = 'Import Initial Data to Database'
