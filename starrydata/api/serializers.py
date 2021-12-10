@@ -1,7 +1,7 @@
 from rest_framework.fields import CharField
 from rest_framework_recursive.fields import RecursiveField
 from rest_framework_json_api import serializers
-from starrydata.models import Tag, Node
+from starrydata.models import Tag, Node, TagTree
 
 class NodeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,6 +12,11 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ('name', 'memo')
+
+class TagTreeListSerializer(serializers.Serializer):
+    class Meta:
+        model = TagTree
+        fields = ('name', 'node')
 
 class TagTreeSerializer(serializers.Serializer):
     name = serializers.CharField()

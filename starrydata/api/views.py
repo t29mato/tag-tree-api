@@ -3,8 +3,8 @@ from rest_framework import generics, views, permissions
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
-from starrydata.models import Tag, Node
-from starrydata.api.serializers import TagAncestorListSerializer, TagSerializer, NodeSerializer, TagTreeSerializer
+from starrydata.models import Tag, Node, TagTree
+from starrydata.api.serializers import TagAncestorListSerializer, TagSerializer, NodeSerializer, TagTreeListSerializer, TagTreeSerializer
 
 class TagListView(generics.ListCreateAPIView):
     queryset = Tag.objects.all().order_by('id')
@@ -28,7 +28,6 @@ class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
         }.get(self.request.method, [])
         return super(TagDetailView, self).get_permissions()
 
-
 class NodeListView(generics.ListCreateAPIView):
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
@@ -49,6 +48,10 @@ class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
             'DELETE': [permissions.IsAuthenticated]
         }.get(self.request.method, [])
         return super(TagDetailView, self).get_permissions()
+
+class TagTreeListView(generics.ListCreateAPIView):
+    queryset = TagTree.objects.all().order_by('id')
+    serializer_class = TagTreeListSerializer
 
 class TagTreeDetailView(views.APIView):
     Tree = TypedDict('Tree', {'name': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
