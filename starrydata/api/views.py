@@ -83,9 +83,9 @@ class TagTreeDetailView(views.APIView):
     def __generateTree(self, parent: Tree, nodes: List[Node], tree_level: int):
         # if tree_level == 1:
         #     return parent
-        tree_level = tree_level + 1
         children = list(filter(lambda node: node['parent_node_id'] == parent['node_id'], nodes))
         parent['tree_level'] = tree_level
+        tree_level = tree_level + 1
         parent['children'] = list(map(lambda child: self.__generateTree(child, nodes, tree_level), children))
         return parent
 
