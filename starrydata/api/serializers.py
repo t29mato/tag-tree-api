@@ -20,8 +20,8 @@ class TagTreeListSerializer(serializers.Serializer):
 
 class TagTreeSerializer(serializers.Serializer):
     name = serializers.CharField()
-    node_id = serializers.CharField()
-    tag_id = serializers.CharField()
+    node_id = serializers.CharField(allow_null=True, required=False)
+    tag_id = serializers.CharField(allow_null=True, required=False)
     parent_node_id = serializers.CharField(allow_null=True, required=False)
     tree_level = serializers.IntegerField()
     children = serializers.ListField(child=RecursiveField(), source='children.all')

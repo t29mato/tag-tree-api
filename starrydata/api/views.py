@@ -1,5 +1,5 @@
 from typing import List, Optional, TypedDict
-from rest_framework import generics, views, permissions
+from rest_framework import generics, serializers, views, permissions
 from rest_framework.response import Response
 from django.db.models import F
 from django.http import Http404
@@ -88,6 +88,22 @@ class TagTreeDetailView(views.APIView):
         tree_level = tree_level + 1
         parent['children'] = list(map(lambda child: self.__generateTree(child, nodes, tree_level), children))
         return parent
+
+    def patch(self, request, *args, **kwargs):
+        serializer = TagTreeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.__saveTree(serializer.data, serializer.data['node_id'])
+        return Response(serializer.data, status=201)
+
+    def __saveTree(self, data: Tree, parent_id: str):
+        tag, created = Tag.objects.get_or_create(id=int(data['tag_id']))
+        node, created = Node.objects.get_or_create(id=int(data['node_id']))
+        print(created)
+        if tag.name != data['name']:
+            newTag, created = Tag.objects.get_or_create(name=data['name'])
+            node.tag = newTag
+            node.save()
+        list(map(lambda child: self.__saveTree(child, data['children']), data['node_id']))
 
 class TagAncestorsView(views.APIView):
     Node = TypedDict('Node', {'name_ja': str, 'name_en': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
