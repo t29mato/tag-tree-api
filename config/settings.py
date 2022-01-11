@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework_json_api',
     'starrydata',
     'corsheaders',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -193,3 +194,8 @@ REST_FRAMEWORK = {
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+# https://djoser.readthedocs.io/en/latest/authentication_backends.html#json-web-token-authentication
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}

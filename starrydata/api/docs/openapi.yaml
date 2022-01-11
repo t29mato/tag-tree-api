@@ -425,6 +425,7 @@ paths:
         content:
           application/vnd.api+json:
             schema:
+              type: object
               required:
                 - data
               properties:
@@ -465,8 +466,6 @@ paths:
                               $ref: '#/components/schemas/type'
                             id:
                               $ref: '#/components/schemas/id'
-
-              type: object
       responses:
         '201':
           description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
@@ -598,6 +597,7 @@ paths:
         content:
           application/vnd.api+json:
             schema:
+              type: object
               required:
                 - data
               properties:
@@ -627,7 +627,6 @@ paths:
                           $ref: '#/components/schemas/reltoone'
                         parent:
                           $ref: '#/components/schemas/reltoone'
-              type: object
       responses:
         '200':
           description: partialUpdate/api/nodes/{id}
@@ -1202,6 +1201,1593 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
+  /auth/users/:
+    get:
+      operationId: List/auth/users/
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - auth
+      responses:
+        '200':
+          description: List/auth/users/
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    post:
+      operationId: create/auth/users/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                          maxLength: 254
+                        username:
+                          type: string
+                          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                          pattern: ^[\w.@+-]+\z
+                          maxLength: 150
+                        password:
+                          type: string
+                          writeOnly: true
+                      required:
+                        - username
+                        - password
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UserCreate'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/me/:
+    get:
+      operationId: retrieve/auth/users/me/
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+      tags:
+        - auth
+      responses:
+        '200':
+          description: retrieve/auth/users/me/
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    patch:
+      operationId: partialUpdate/auth/users/me/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                          maxLength: 254
+      responses:
+        '200':
+          description: me/auth/users/me/
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-updating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-updating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict]([Conflict](https://jsonapi.org/format/#crud-updating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    delete:
+      operationId: destroy/auth/users/me/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      responses:
+        '200':
+          description: '[OK](https://jsonapi.org/format/#crud-deleting-responses-200)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/onlymeta'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[no content](https://jsonapi.org/format/#crud-deleting-responses-204)'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Resource does not exist](https://jsonapi.org/format/#crud-deleting-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/{id}/:
+    get:
+      operationId: retrieve/auth/users/{id}/
+      description: ''
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this user.
+          schema:
+            type: string
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - auth
+      responses:
+        '200':
+          description: retrieve/auth/users/{id}/
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    patch:
+      operationId: partial_update/auth/users/{id}/
+      description: ''
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this user.
+          schema:
+            type: string
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                          maxLength: 254
+      responses:
+        '200':
+          description: partial_update/auth/users/{id}/
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-updating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-updating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict]([Conflict](https://jsonapi.org/format/#crud-updating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    delete:
+      operationId: destroy/auth/users/{id}/
+      description: ''
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this user.
+          schema:
+            type: string
+      tags:
+        - auth
+      responses:
+        '200':
+          description: '[OK](https://jsonapi.org/format/#crud-deleting-responses-200)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/onlymeta'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[no content](https://jsonapi.org/format/#crud-deleting-responses-204)'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Resource does not exist](https://jsonapi.org/format/#crud-deleting-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/activation/:
+    post:
+      operationId: activation/auth/users/activation/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        uid:
+                          type: string
+                        token:
+                          type: string
+                      required:
+                        - uid
+                        - token
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Activation'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/resend_activation/:
+    post:
+      operationId: resend_activation/auth/users/resend_activation/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                      required:
+                        - email
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SendEmailReset'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/reset_password/:
+    post:
+      operationId: reset_password/auth/users/reset_password/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                      required:
+                        - email
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SendEmailReset'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/reset_password_confirm/:
+    post:
+      operationId: reset_password_confirm/auth/users/reset_password_confirm/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        uid:
+                          type: string
+                        token:
+                          type: string
+                        new_password:
+                          type: string
+                      required:
+                        - uid
+                        - token
+                        - new_password
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PasswordResetConfirm'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/reset_username/:
+    post:
+      operationId: reset_username/auth/users/reset_username/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        email:
+                          type: string
+                          format: email
+                      required:
+                        - email
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SendEmailReset'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/reset_username_confirm/:
+    post:
+      operationId: reset_username_confirm/auth/users/reset_username_confirm/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        new_username:
+                          type: string
+                          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                          pattern: ^[\w.@+-]+\z
+                          maxLength: 150
+                      required:
+                        - new_username
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/UsernameResetConfirm'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/set_password/:
+    post:
+      operationId: set_password/auth/users/set_password/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        new_password:
+                          type: string
+                        current_password:
+                          type: string
+                      required:
+                        - new_password
+                        - current_password
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SetPassword'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/users/set_username/:
+    post:
+      operationId: set_username/auth/users/set_username/
+      description: ''
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        current_password:
+                          type: string
+                        new_username:
+                          type: string
+                          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                          pattern: ^[\w.@+-]+\z
+                          maxLength: 150
+                      required:
+                        - current_password
+                        - new_username
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SetUsername'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/jwt/create/:
+    post:
+      operationId: create/auth/jwt/create/
+      description: 'Takes a set of user credentials and returns an access and refresh JSON web
+
+        token pair to prove the authentication of those credentials.'
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                        password:
+                          type: string
+                          writeOnly: true
+                      required:
+                        - username
+                        - password
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TokenObtainPair'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/jwt/refresh/:
+    post:
+      operationId: create/auth/jwt/refresh/
+      description: 'Takes a refresh type JSON web token and returns an access type JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        refresh:
+                          type: string
+                      required:
+                        - refresh
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TokenRefresh'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /auth/jwt/verify/:
+    post:
+      operationId: create/auth/jwt/verify/
+      description: 'Takes a token and indicates if it is valid.  This view provides no
+
+        information about a token''s fitness for a particular use.'
+      parameters: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        token:
+                          type: string
+                      required:
+                        - token
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TokenVerify'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
 components:
   schemas:
     Tag:
@@ -1358,6 +2944,233 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagTree'
+    User:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              maxLength: 254
+            id:
+              type: integer
+              readOnly: true
+            username:
+              type: string
+              readOnly: true
+              description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+    UserCreate:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              maxLength: 254
+            username:
+              type: string
+              description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+              pattern: ^[\w.@+-]+\z
+              maxLength: 150
+            id:
+              type: integer
+              readOnly: true
+            password:
+              type: string
+              writeOnly: true
+          required:
+            - username
+            - password
+    Activation:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            uid:
+              type: string
+            token:
+              type: string
+          required:
+            - uid
+            - token
+    SendEmailReset:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+          required:
+            - email
+    PasswordResetConfirm:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            uid:
+              type: string
+            token:
+              type: string
+            new_password:
+              type: string
+          required:
+            - uid
+            - token
+            - new_password
+    UsernameResetConfirm:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            new_username:
+              type: string
+              description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+              pattern: ^[\w.@+-]+\z
+              maxLength: 150
+          required:
+            - new_username
+    SetPassword:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            new_password:
+              type: string
+            current_password:
+              type: string
+          required:
+            - new_password
+            - current_password
+    SetUsername:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            current_password:
+              type: string
+            new_username:
+              type: string
+              description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+              pattern: ^[\w.@+-]+\z
+              maxLength: 150
+          required:
+            - current_password
+            - new_username
     TokenObtainPair:
       type: object
       required:
@@ -1411,6 +3224,29 @@ components:
               readOnly: true
           required:
             - refresh
+    TokenVerify:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            token:
+              type: string
+          required:
+            - token
     JSONAPIresponse:
       oneOf:
         - $ref: "#/components/schemas/success"
