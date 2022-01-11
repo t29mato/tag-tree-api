@@ -1201,9 +1201,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/:
+  /api/auth/users/:
     get:
-      operationId: List/auth/users/
+      operationId: List/api/auth/users/
       description: ''
       parameters:
         - $ref: '#/components/parameters/include'
@@ -1236,7 +1236,7 @@ paths:
         - auth
       responses:
         '200':
-          description: List/auth/users/
+          description: List/api/auth/users/
           content:
             application/vnd.api+json:
               schema:
@@ -1273,7 +1273,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     post:
-      operationId: create/auth/users/
+      operationId: create/api/auth/users/
       description: ''
       parameters: []
       tags:
@@ -1375,9 +1375,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/me/:
+  /api/auth/users/me/:
     get:
-      operationId: retrieve/auth/users/me/
+      operationId: retrieve/api/auth/users/me/
       description: ''
       parameters:
         - $ref: '#/components/parameters/include'
@@ -1386,7 +1386,7 @@ paths:
         - auth
       responses:
         '200':
-          description: retrieve/auth/users/me/
+          description: retrieve/api/auth/users/me/
           content:
             application/vnd.api+json:
               schema:
@@ -1421,7 +1421,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     patch:
-      operationId: partialUpdate/auth/users/me/
+      operationId: partialUpdate/api/auth/users/me/
       description: ''
       parameters: []
       tags:
@@ -1459,7 +1459,7 @@ paths:
                           maxLength: 254
       responses:
         '200':
-          description: me/auth/users/me/
+          description: me/api/auth/users/me/
           content:
             application/vnd.api+json:
               schema:
@@ -1506,7 +1506,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     delete:
-      operationId: destroy/auth/users/me/
+      operationId: destroy/api/auth/users/me/
       description: ''
       parameters: []
       tags:
@@ -1538,9 +1538,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/{id}/:
+  /api/auth/users/{id}/:
     get:
-      operationId: retrieve/auth/users/{id}/
+      operationId: retrieve/api/auth/users/{id}/
       description: ''
       parameters:
         - name: id
@@ -1567,7 +1567,7 @@ paths:
         - auth
       responses:
         '200':
-          description: retrieve/auth/users/{id}/
+          description: retrieve/api/auth/users/{id}/
           content:
             application/vnd.api+json:
               schema:
@@ -1602,7 +1602,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     patch:
-      operationId: partial_update/auth/users/{id}/
+      operationId: partial_update/api/auth/users/{id}/
       description: ''
       parameters:
         - name: id
@@ -1646,7 +1646,7 @@ paths:
                           maxLength: 254
       responses:
         '200':
-          description: partial_update/auth/users/{id}/
+          description: partial_update/api/auth/users/{id}/
           content:
             application/vnd.api+json:
               schema:
@@ -1693,7 +1693,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/failure'
     delete:
-      operationId: destroy/auth/users/{id}/
+      operationId: destroy/api/auth/users/{id}/
       description: ''
       parameters:
         - name: id
@@ -1731,9 +1731,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/activation/:
+  /api/auth/users/activation/:
     post:
-      operationId: activation/auth/users/activation/
+      operationId: activation/api/auth/users/activation/
       description: ''
       parameters: []
       tags:
@@ -1827,9 +1827,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/resend_activation/:
+  /api/auth/users/resend_activation/:
     post:
-      operationId: resend_activation/auth/users/resend_activation/
+      operationId: resend_activation/api/auth/users/resend_activation/
       description: ''
       parameters: []
       tags:
@@ -1921,9 +1921,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/reset_password/:
+  /api/auth/users/reset_password/:
     post:
-      operationId: reset_password/auth/users/reset_password/
+      operationId: reset_password/api/auth/users/reset_password/
       description: ''
       parameters: []
       tags:
@@ -2015,9 +2015,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/reset_password_confirm/:
+  /api/auth/users/reset_password_confirm/:
     post:
-      operationId: reset_password_confirm/auth/users/reset_password_confirm/
+      operationId: reset_password_confirm/api/auth/users/reset_password_confirm/
       description: ''
       parameters: []
       tags:
@@ -2114,9 +2114,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/reset_username/:
+  /api/auth/users/reset_username/:
     post:
-      operationId: reset_username/auth/users/reset_username/
+      operationId: reset_username/api/auth/users/reset_username/
       description: ''
       parameters: []
       tags:
@@ -2208,9 +2208,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/reset_username_confirm/:
+  /api/auth/users/reset_username_confirm/:
     post:
-      operationId: reset_username_confirm/auth/users/reset_username_confirm/
+      operationId: reset_username_confirm/api/auth/users/reset_username_confirm/
       description: ''
       parameters: []
       tags:
@@ -2304,9 +2304,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/set_password/:
+  /api/auth/users/set_password/:
     post:
-      operationId: set_password/auth/users/set_password/
+      operationId: set_password/api/auth/users/set_password/
       description: ''
       parameters: []
       tags:
@@ -2400,9 +2400,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/users/set_username/:
+  /api/auth/users/set_username/:
     post:
-      operationId: set_username/auth/users/set_username/
+      operationId: set_username/api/auth/users/set_username/
       description: ''
       parameters: []
       tags:
@@ -2499,9 +2499,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/jwt/create/:
+  /api/auth/jwt/create/:
     post:
-      operationId: create/auth/jwt/create/
+      operationId: create/api/auth/jwt/create/
       description: 'Takes a set of user credentials and returns an access and refresh JSON web
 
         token pair to prove the authentication of those credentials.'
@@ -2598,9 +2598,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/jwt/refresh/:
+  /api/auth/jwt/refresh/:
     post:
-      operationId: create/auth/jwt/refresh/
+      operationId: create/api/auth/jwt/refresh/
       description: 'Takes a refresh type JSON web token and returns an access type JSON web
 
         token if the refresh token is valid.'
@@ -2693,9 +2693,9 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /auth/jwt/verify/:
+  /api/auth/jwt/verify/:
     post:
-      operationId: create/auth/jwt/verify/
+      operationId: create/api/auth/jwt/verify/
       description: 'Takes a token and indicates if it is valid.  This view provides no
 
         information about a token''s fitness for a particular use.'
