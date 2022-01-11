@@ -4,5 +4,10 @@
         "makemigrations",
         "starrydata",
         "transno"
-    ]
+    ],
+    "python.testing.pytestArgs": [
+        "starrydata"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

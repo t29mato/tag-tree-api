@@ -13,6 +13,6 @@ class Node(models.Model):
 class TagTree(models.Model):
     name = models.CharField(max_length=64, unique=True)
     key = models.CharField(max_length=32, unique=True)
-    node = models.ForeignKey(Node, on_delete=models.CASCADE)
+    node = models.ForeignKey(Node, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self) -> str:
         return self.name

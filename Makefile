@@ -13,10 +13,6 @@ api-docs-fix:
 	sed -i '' -e '/components\/parameters\/sort/d' $(API_DOCS_FILE_PATH)
 
 	# Add type to POST schema
-	yq -i eval '.paths./api/databases.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths./api/papers.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths./api/figures.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
-	yq -i eval '.paths./api/samples.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/tags.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 	yq -i eval '.paths./api/nodes.post.requestBody.content["application/vnd.api+json"].schema.type="object"' ./starrydata/api/docs/openapi.yaml
 

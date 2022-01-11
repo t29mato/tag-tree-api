@@ -713,6 +713,174 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
+  /api/tag_tree:
+    get:
+      operationId: List/api/tag_tree
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/include'
+        - $ref: '#/components/parameters/fields'
+        - name: page[number]
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page[size]
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: sort
+          required: false
+          in: query
+          description: Which field to use when ordering the results.
+          schema:
+            type: string
+        - name: filter[search]
+          required: false
+          in: query
+          description: A search term.
+          schema:
+            type: string
+      tags:
+        - starrydata
+      responses:
+        '200':
+          description: List/api/tag_tree
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - links
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TagTree'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  meta:
+                    $ref: '#/components/schemas/meta'
+                  included:
+                    type: array
+                    # uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+    post:
+      operationId: create/api/tag_tree
+      description: ''
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - attributes
+                    - relationships
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        key:
+                          type: string
+                      required:
+                        - name
+                        - key
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Tag'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
   /api/tag_tree/{id}:
     get:
       operationId: retrieve/api/tag_tree/{id}
@@ -737,7 +905,7 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/TagTree'
+                    $ref: '#/components/schemas/TagTreeDetail'
         '401':
           description: not authorized
           content:
@@ -750,22 +918,53 @@ paths:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
-  /api/tag_ancestors/{id}:
-    get:
-      operationId: retrieve/api/tag_ancestors/{id}
+    patch:
+      operationId: partialUpdate/api/tag_tree/{id}
       description: ''
       parameters:
         - name: id
           in: path
           required: true
-          description: ''
+          description: A unique integer value identifying this tag.
           schema:
             type: string
       tags:
         - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                    - id
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    attributes:
+                      type: object
+                      required:
+                        - name
+                        - key
+                        - tree
+                      properties:
+                        name:
+                          type: string
+                        key:
+                          type: string
+                        tree:
+                          $ref: '#/components/schemas/TagTree'
       responses:
         '200':
-          description: List/api/tag_ancestors
+          description: partialUpdate/api/tag_tree/{id}
           content:
             application/vnd.api+json:
               schema:
@@ -774,57 +973,237 @@ paths:
                   - data
                 properties:
                   data:
-                    $ref: '#/components/schemas/TagAncestors'
+                    $ref: '#/components/schemas/TagTreeDetail'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
         '401':
           description: not authorized
           content:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-updating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
         '404':
-          description: not found
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-updating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict]([Conflict](https://jsonapi.org/format/#crud-updating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /api/token/:
+    post:
+      operationId: create/api/token/
+      description: 'Takes a set of user credentials and returns an access and refresh JSON web
+
+        token pair to prove the authentication of those credentials.'
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                        password:
+                          type: string
+                          writeOnly: true
+                      required:
+                        - username
+                        - password
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TokenObtainPair'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+  /api/token/refresh/:
+    post:
+      operationId: create/api/token/refresh/
+      description: 'Takes a refresh type JSON web token and returns an access type JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      tags:
+        - starrydata
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+                  required:
+                    - type
+                  additionalProperties: false
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/type'
+                    id:
+                      $ref: '#/components/schemas/id'
+                    links:
+                      type: object
+                      properties:
+                        self:
+                          $ref: '#/components/schemas/link'
+                    attributes:
+                      type: object
+                      properties:
+                        refresh:
+                          type: string
+                      required:
+                        - refresh
+      responses:
+        '201':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-201). Assigned `id` and/or any other changes are in this response.'
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TokenRefresh'
+                  included:
+                    type: array
+                    uniqueItems: true
+                    items:
+                      $ref: '#/components/schemas/resource'
+                  links:
+                    description: Link members related to primary data
+                    allOf:
+                      - $ref: '#/components/schemas/links'
+                      - $ref: '#/components/schemas/pagination'
+                  jsonapi:
+                    $ref: '#/components/schemas/jsonapi'
+        '202':
+          description: Accepted for [asynchronous processing](https://jsonapi.org/recommendations/#asynchronous-processing)
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/datum'
+        '204':
+          description: '[Created](https://jsonapi.org/format/#crud-creating-responses-204) with the supplied `id`. No other changes from what was POSTed.'
+        '401':
+          description: not authorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '403':
+          description: '[Forbidden](https://jsonapi.org/format/#crud-creating-responses-403)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '404':
+          description: '[Related resource does not exist](https://jsonapi.org/format/#crud-creating-responses-404)'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/failure'
+        '409':
+          description: '[Conflict](https://jsonapi.org/format/#crud-creating-responses-409)'
           content:
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/failure'
 components:
   schemas:
-    Database:
-      type: object
-      required:
-        - type
-        - id
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/type'
-        id:
-          $ref: '#/components/schemas/id'
-        links:
-          type: object
-          properties:
-            self:
-              $ref: '#/components/schemas/link'
-        attributes:
-          type: object
-          properties:
-            id:
-              type: integer
-              readOnly: true
-            sample_count:
-              type: string
-              readOnly: true
-            paper_count:
-              type: string
-              readOnly: true
-            figure_count:
-              type: string
-              readOnly: true
-            name:
-              type: string
-              maxLength: 100
-          required:
-            - name
     Tag:
       type: object
       required:
@@ -911,7 +1290,7 @@ components:
               $ref: '#/components/schemas/reltoone'
             parent:
               $ref: '#/components/schemas/reltoone'
-    TagTree:
+    TagTreeList:
       type: object
       required:
         - type
@@ -929,32 +1308,13 @@ components:
             self:
               $ref: '#/components/schemas/link'
         attributes:
-          $ref: '#/components/schemas/TagTreeAttributes'
-    TagTreeAttributes:
           type: object
           properties:
             name:
               type: string
-            node_id:
+            key:
               type: string
-            tag_id:
-              type: string
-            parent_node_id:
-              type: string
-            tree_level:
-              type: number
-            children:
-              type: array
-              items:
-                $ref: '#/components/schemas/TagTreeAttributes'
-          required:
-            - name
-            - node_id
-            - tag_id
-            - parent_node_id
-            - tree_level
-            - children
-    TagAncestors:
+    TagTreeDetail:
       type: object
       required:
         - type
@@ -973,28 +1333,113 @@ components:
               $ref: '#/components/schemas/link'
         attributes:
           type: object
-          required:
-            - ancestors
-          additionalProperties: false
           properties:
-            ancestors:
-              type: array
-              items:
-                type: object
-                required:
-                  - node_id
-                  - tag_id
-                properties:
-                  name_ja:
-                    type: string
-                  name_en:
-                    type: string
-                  node_id:
-                    type: string
-                  tag_id:
-                    type: string
-                  parent_node_id:
-                    type: string
+            name:
+              type: string
+            key:
+              type: string
+            tree:
+              $ref: '#/components/schemas/TagTree'
+          required:
+            - name
+            - key
+            - tree
+    TagTree:
+      type: object
+      required:
+        - tag_name
+        - children
+      properties:
+        tag_name:
+          type: string
+        tree_level:
+          type: number
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagTree'
+    TokenObtainPair:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+              writeOnly: true
+          required:
+            - username
+            - password
+    TokenRefresh:
+      type: object
+      required:
+        - type
+        - id
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/type'
+        id:
+          $ref: '#/components/schemas/id'
+        links:
+          type: object
+          properties:
+            self:
+              $ref: '#/components/schemas/link'
+        attributes:
+          type: object
+          properties:
+            refresh:
+              type: string
+            access:
+              type: string
+              readOnly: true
+          required:
+            - refresh
+    JSONAPIresponse:
+      oneOf:
+        - $ref: "#/components/schemas/success"
+        - $ref: "#/components/schemas/failure"
+        - $ref: "#/components/schemas/info"
+    success:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/data"
+        included:
+          description: >-
+            To reduce the number of HTTP requests, servers **MAY** allow responses that include related resources along with the requested primary resources. Such responses are called `compound documents`.
+          type: array
+          items:
+            $ref: "#/components/schemas/resource"
+          uniqueItems: true
+        meta:
+          $ref: "#/components/schemas/meta"
+        links:
+          description: Link members related to the primary data.
+          allOf:
+            - $ref: "#/components/schemas/links"
+            - $ref: "#/components/schemas/pagination"
+        jsonapi:
+          $ref: "#/components/schemas/jsonapi"
+      additionalProperties: false
     failure:
       type: object
       required:
@@ -1007,8 +1452,22 @@ components:
           uniqueItems: true
         meta:
           $ref: "#/components/schemas/meta"
+        jsonapi:
+          $ref: "#/components/schemas/jsonapi"
         links:
           $ref: "#/components/schemas/links"
+      additionalProperties: false
+    info:
+      type: object
+      required:
+        - meta
+      properties:
+        meta:
+          $ref: "#/components/schemas/meta"
+        links:
+          $ref: "#/components/schemas/links"
+        jsonapi:
+          $ref: "#/components/schemas/jsonapi"
       additionalProperties: false
     onlymeta:
       properties:
@@ -1016,25 +1475,10 @@ components:
           $ref: "#/components/schemas/meta"
       additionalProperties: false
     meta:
-      description: ''
+      description: >-
+        Non-standard meta-information that can not be represented as an attribute or relationship.
       type: object
-      additionalProperties: false
-      required:
-        - "pagination"
-      properties:
-        pagination:
-          type: object
-          required:
-            - "page"
-            - "pages"
-            - "count"
-          properties:
-            page:
-              type: number
-            pages:
-              type: number
-            count:
-              type: number
+      additionalProperties: true
     data:
       description: >-
         The document's `primary data` is a representation of the resource or collection of resources targeted by a request.
@@ -1258,6 +1702,15 @@ components:
             - type: string
               format: uri-reference
             - $ref: "#/components/schemas/nulltype"
+    jsonapi:
+      description: An object describing the server's implementation
+      type: object
+      properties:
+        version:
+          type: string
+        meta:
+          $ref: "#/components/schemas/meta"
+      additionalProperties: false
     error:
       type: object
       properties:
