@@ -1,55 +1,35 @@
 from typing import List, Optional, TypedDict
 from rest_framework import generics, serializers, views, permissions
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.db.models import F
-from django.http import Http404
 from starrydata.models import Tag, Node, TagTree
 from starrydata.api.serializers import TagSerializer, NodeSerializer, TagTreeDetailSerializer, TagTreeListSerializer, TagTreeSerializer
 
 class TagListView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
     search_fields = ['name']
-    def get_permissions(self):
-        self.permission_classes = {
-            'POST': [permissions.IsAuthenticated]
-        }.get(self.request.method, [])
-        return super(TagListView, self).get_permissions()
 
 class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
-    def get_permissions(self):
-        self.permission_classes = {
-            'POST': [permissions.IsAuthenticated],
-            'PUT': [permissions.IsAuthenticated],
-            'PATCH': [permissions.IsAuthenticated],
-            'DELETE': [permissions.IsAuthenticated]
-        }.get(self.request.method, [])
-        return super(TagDetailView, self).get_permissions()
 
 class NodeListView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
-    def get_permissions(self):
-        self.permission_classes = {
-            'POST': [permissions.IsAuthenticated]
-        }.get(self.request.method, [])
-        return super(TagListView, self).get_permissions()
 
 class NodeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Node.objects.select_related('tag', 'parent').all().order_by('id')
     serializer_class = NodeSerializer
-    def get_permissions(self):
-        self.permission_classes = {
-            'POST': [permissions.IsAuthenticated],
-            'PUT': [permissions.IsAuthenticated],
-            'PATCH': [permissions.IsAuthenticated],
-            'DELETE': [permissions.IsAuthenticated]
-        }.get(self.request.method, [])
-        return super(TagDetailView, self).get_permissions()
 
 class TagTreeListView(views.APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     # to generate API docs
     def get_serializer(self):
         return TagTreeListSerializer
@@ -73,6 +53,8 @@ class TagTreeListView(views.APIView):
 
 
 class TagTreeDetailView(views.APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     Tree = TypedDict('Tree', {'tag_name': str, 'node_id': str, 'tag_id': str, 'tree_level': int, 'children': Optional[list['Tree']]})
     Node = TypedDict('Tree', {'tag_name': str, 'node_id': str, 'tag_id': str, 'parent_node_id': str})
     # to generate API docs
