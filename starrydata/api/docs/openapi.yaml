@@ -3201,29 +3201,12 @@ components:
     TokenRefresh:
       type: object
       required:
-        - type
-        - id
+        - access
       additionalProperties: false
       properties:
-        type:
-          $ref: '#/components/schemas/type'
-        id:
-          $ref: '#/components/schemas/id'
-        links:
-          type: object
-          properties:
-            self:
-              $ref: '#/components/schemas/link'
-        attributes:
-          type: object
-          properties:
-            refresh:
-              type: string
-            access:
-              type: string
-              readOnly: true
-          required:
-            - refresh
+        access:
+          type: string
+          readOnly: true
     TokenVerify:
       type: object
       required:
