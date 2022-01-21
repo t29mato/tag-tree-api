@@ -2929,7 +2929,6 @@ components:
           required:
             - name
             - key
-            - tree
     TagTree:
       type: object
       required:
