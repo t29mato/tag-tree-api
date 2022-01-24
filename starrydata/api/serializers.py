@@ -23,6 +23,8 @@ class TagTreeListSerializer(serializers.Serializer):
 
 class TagTreeSerializer(serializers.Serializer):
     tag_name = serializers.CharField()
+    # tree_level should be read_only, but when serializer.is_valid() is called tree_level property is removed from the object.
+    # So, I gave up to use read_only
     tree_level = serializers.IntegerField(required=False)
     children = serializers.ListField(child=RecursiveField(), source='children.all')
 
