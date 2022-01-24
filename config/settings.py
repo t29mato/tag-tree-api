@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import django_heroku
 import environ
@@ -195,7 +196,8 @@ REST_FRAMEWORK = {
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
-# https://djoser.readthedocs.io/en/latest/authentication_backends.html#json-web-token-authentication
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
 SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
