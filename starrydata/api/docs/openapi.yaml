@@ -35,7 +35,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: List/api/tags
@@ -81,7 +81,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -196,7 +196,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: retrieve/api/tags/{id}
@@ -232,7 +232,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -318,7 +318,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: '[OK](https://jsonapi.org/format/#crud-deleting-responses-200)'
@@ -378,7 +378,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: List/api/nodes
@@ -420,7 +420,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -546,7 +546,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: retrieve/api/nodes/{id}
@@ -592,7 +592,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -684,7 +684,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: '[OK](https://jsonapi.org/format/#crud-deleting-responses-200)'
@@ -744,7 +744,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: List/api/tag_tree
@@ -790,7 +790,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -892,7 +892,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       responses:
         '200':
           description: List/api/tag_tree
@@ -928,7 +928,7 @@ paths:
           schema:
             type: string
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1015,7 +1015,7 @@ paths:
         token pair to prove the authentication of those credentials.'
       parameters: []
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1114,7 +1114,7 @@ paths:
         token if the refresh token is valid.'
       parameters: []
       tags:
-        - starrydata
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1233,7 +1233,7 @@ paths:
           schema:
             type: string
       tags:
-        - auth
+        - tag-tree
       responses:
         '200':
           description: List/api/auth/users/
@@ -1277,7 +1277,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1383,7 +1383,7 @@ paths:
         - $ref: '#/components/parameters/include'
         - $ref: '#/components/parameters/fields'
       tags:
-        - auth
+        - tag-tree
       responses:
         '200':
           description: retrieve/api/auth/users/me/
@@ -1425,7 +1425,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1510,7 +1510,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       responses:
         '200':
           description: '[OK](https://jsonapi.org/format/#crud-deleting-responses-200)'
@@ -1564,7 +1564,7 @@ paths:
           schema:
             type: string
       tags:
-        - auth
+        - tag-tree
       responses:
         '200':
           description: retrieve/api/auth/users/{id}/
@@ -1612,7 +1612,7 @@ paths:
           schema:
             type: string
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1703,7 +1703,7 @@ paths:
           schema:
             type: string
       tags:
-        - auth
+        - tag-tree
       responses:
         '200':
           description: '[OK](https://jsonapi.org/format/#crud-deleting-responses-200)'
@@ -1737,7 +1737,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1833,7 +1833,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -1927,7 +1927,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2021,7 +2021,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2120,7 +2120,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2214,7 +2214,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2310,7 +2310,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2406,7 +2406,7 @@ paths:
       description: ''
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2507,7 +2507,7 @@ paths:
         token pair to prove the authentication of those credentials.'
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2606,7 +2606,7 @@ paths:
         token if the refresh token is valid.'
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
@@ -2701,7 +2701,7 @@ paths:
         information about a token''s fitness for a particular use.'
       parameters: []
       tags:
-        - auth
+        - tag-tree
       requestBody:
         content:
           application/vnd.api+json:
