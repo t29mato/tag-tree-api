@@ -72,6 +72,10 @@ CORS_ORIGIN_WHITELIST = [
     'https://tag-tree.vercel.app',
 ]
 
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r'^(https?://)?tag-tree-\w+-t29mato.vercel.app'
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'config.urls'
