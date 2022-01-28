@@ -70,6 +70,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'https://tag-tree.vercel.app',
+    'https://tag-tree-develop.vercel.app',
 ]
 
 CORS_ORIGIN_REGEX_WHITELIST = [
