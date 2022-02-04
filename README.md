@@ -21,5 +21,5 @@ $ python manage.py migrate
 ### Run Server on a local machine
 
 ```
-$ python manage.py runserver 0.0.0.0:8080
+$ python manage.py runserver 0.0.0.0:8000
 ```
